@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Description</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: rgb(175, 89, 76);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        section {
+            margin: 2rem;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+        a:hover {
+            color: #004499;
+        }
+        .image-container {
+            /* text-align: center;
+            margin-bottom: 2rem;
+            max-width: 800px;  */
+            /* margin: auto;  */
+            display: table; 
+            margin: auto; 
+            text-align: center; 
+            max-width: 800px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Data organization diagram styles */
+        .diagram-container {
+            background: white;
+            padding: 30px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 900px;
+        }
+        
+        .data-structure {
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .folder-section {
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .audit-folder {
+            background-color: rgb(243, 216, 212);
+            border: 2px solid rgb(175, 89, 76);
+        }
+        
+        .ground-truth-folder {
+            background-color: #e1d5e7;
+            border: 2px solid #9673a6;
+        }
+        
+        .extra-folder {
+            background-color: #f8f8f8;
+            border: 2px solid #cccccc;
+        }
+        
+        .folder-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .folder-content {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        .emphasis {
+            font-weight: bold;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        figcaption {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        h3 {
+            color: rgb(175, 89, 76);
+            text-align: center; 
+            margin-bottom: 30px;
+        }
+        
+        .missing-desc {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Data Description for Ranking Audits<br />(Inequality and Inequity Analysis)</h1>
+    </header>
+
+    <!-- Image Section -->
+    <br />
+    <figure class="image-container">
+        <img src="pipeline_v1.0.png" alt="Ranking auditing pipeline" style="width:100%; height:auto;">
+        <figcaption style="text-align: justify; font-size:14px; margin-top:8px;">
+            Pipeline of ranking auditing: given a directed attributed graph as input, nodes are ranked by importance 
+            (e.g., via PageRank), and the top-k nodes are selected. The auditing task investigates how the underlying 
+            network structure shapes the resulting top-k ranking.
+        </figcaption>
+    </figure>
+    
+    <!-- Research Questions Section -->
+    <div class="diagram-container">
+        <h3>Key Research Questions for Visualization</h3>
+        
+        <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h4 style="color: #4393ad; margin-top: 0;">🎯 Algorithmic Bias</h4>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li><strong>What network structure affects inequality?</strong> → Compare <code>gini</code> across all network features</li>
+                <li><strong>What network structure affects inequity?</strong> → Compare <code>me_rank</code> across all network features at <code>k=100</code></li>
+            </ul>
+        </div>
+
+        <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h4 style="color: #4393ad; margin-top: 0;">👥 WHO makes it to the top of the rank?</h4>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li><strong>Are minorities fairly represented?</strong> → Compare <code>fm</code> and <code>fm_rank</code> or <code>fm_node</code></li>
+                <li><strong>Who are those in each top-k?</strong> → Examine <code>fm,d,plo_m,plo_M,h_mm,h_MM</code> for each <code>k</code></li>
+                <li><strong>How similar are the nodes in the top-k?</strong> → Examine <code>fm,d,plo_m,plo_M,h_mm,h_MM</code> for each <code>k</code></li>
+            </ul>
+        </div>
+
+        <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h4 style="color: #4393ad; margin-top: 0;">🛠️ What interventions can be implemented?</h4>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li><strong>Would increasing only the size of the minority group guarantee equity?</strong> → Compare <code>me_rank</code> from networks that share the same <code>h_mm, h_MM, plo_m, plo_M, d</code> but have different minority sizes <code>fm</code>.</li>
+                <li><strong>Would changing behavior guarantee equity? What is most effective, changing <code>h_mm</code> or <code>h_MM</code>?</strong> → Compare <code>me_rank</code> from networks that share the same <code>fm, plo_m, plo_M, d</code> but have different values of homophily <code>h_mm, h_MM</code>.</li>
+                <li><strong>What if minority size is increased and behavior is changed?</strong> → Compare <code>me_rank</code> from networks that share the same <code>plo_m, plo_M, d</code> but have different values of homophily <code>h_mm, h_MM</code> and minority size <code>fm</code>.</li>
+            </ul>
+        </div>
+
+        <div style="background: #d1e4eb; padding: 15px; border-radius: 8px; border-left: 5px solid #4393ad;">
+            <p style="margin: 0; font-style: italic;"><strong>💡 Tip:</strong> Use <code>*_rank</code> when top-k is based on ranks to account for draws (e.g. one rank may have multiple nodes) and <code>*_node</code> when top-k is based on nodes</p>
+        </div>
+    </div>
+
+    <!-- Data organization diagram -->
+    <div class="diagram-container">
+        <h3 style="text-align: center; margin-bottom: 30px;">Data Organization Structure</h3>
+        
+        <div class="data-structure">
+            <div class="folder-section audit-folder">
+                <div class="folder-title"><a href="#files-section">project2_data/</a></div>
+                <div class="folder-content">
+                    Main analysis outputs from PageRank audit:<br><br>
+                    <div class="emphasis">Inequality-Inequity Analysis:</div>
+                    • <a href="#edges-file">edges.csv</a><br>
+                    • <a href="#nodes-file">nodes_pg.csv</a><br> 
+                    • <a href="#ranking-file">ranking_minorities.csv</a><br><br>
+                    <em>All files linked by (network) <code>id</code></em>
+                </div>
+            </div>
+        </div>
+        
+        <figcaption></figcaption>
+    </div>
+
+    <section id="files-section">
+        <h2>Category: Inequality-Inequity PageRank Audit</h2>
+        <p>This folder contains three files offering information about networks, ranking scores, and audit analysis.</p>
+        <p>There are 4,840 synthetic directed networks. Each network has 100 nodes. </p>
+
+        <h3 id="edges-file">File: edges.csv (network)</h3>
+        <p>Edge list for each directed networks (<code>id</code>). The file contains 2,624,320 records.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>id</code></td><td>Unique identifier of networks.</td></tr>
+                <tr><td><code>source</code></td><td>Sorce node id (where the link/edge/connection starts).</td></tr>
+                <tr><td><code>target</code></td><td>Target node id (where the link/edge/connected ends from <code>source</code>).</td></tr>
+            </tbody>
+        </table>
+
+        <h3 id="nodes-file">File: node_pg.csv (PageRank)</h3>
+        <p>Metadata for each node per network. The file contains 484,000 records.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                id,node,minority,pagerank,order_rank,order_node
+                <tr><td><code>id</code></td><td>Unique identifier of networks.</td></tr>
+                <tr><td><code>node</code></td><td>Unique identifier of nodes per network.</td></tr>
+                <tr><td><code>minority</code></td><td>Indicator of belonging to the minority group (1: minority, 0: majority).</td></tr>
+                <tr><td><code>pagerank</code></td><td>PageRank score.</td></tr>
+                <tr><td><code>order_rank</code></td><td>The order by rank (sorted by pagerank, the nodes with the same pagerank are given the same rank).</td></tr>
+                <tr><td><code>order_node</code></td><td>The order by node (sorted by pagerank)</td></tr>
+            </tbody>
+        </table>
+
+        <h3 id="ranking-file">File: ranking_minorities.csv (audit)</h3>
+        <p>Inequelity and Inequity scores per node/network. The file contains 53,240 recods.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>id</code></td><td>Unique identifier of networks.</td></tr>
+                <tr><td><code>d</code></td><td>Edge density of the network (values: 0.01, 0.1).</td></tr>
+                <tr><td><code>plo_m</code></td><td>Activity score of the minority group in the network (values: 1.5, 3.0).</td></tr>
+                <tr><td><code>plo_M</code></td><td>Activity score of the majority group in the network (values: 1.5, 3.0).</td></tr>
+                <tr><td><code>h_mm</code></td><td>Homophily within the minority group in the network (values: 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0).</td></tr>
+                <tr><td><code>h_MM</code></td><td>Homophily within the majority group in the network (values: 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0).</td></tr>
+                <tr><td><code>k</code></td><td>Top-k in % (values: 5%, 10%, 20%, ..., 100%).</td></tr>
+                <tr><td><code>fm</code></td><td>Fraction of minorities in the network (values: 0.1, 0.2, 0.3, 0.4, 0.5).</td></tr>
+                <tr><td><code>fm_rank</code></td><td>Fraction of minorities at top-k based on order_rank.</td></tr>
+                <tr><td><code>fm_node</code></td><td>Fraction of minorities at top-k based on order_node.</td></tr>
+                <tr><td><code>me_rank</code></td><td>Inequity (mean error) at top-k based on order_rank.</td></tr>
+                <tr><td><code>me_node</code></td><td>Inequity (mean error) at top-k based on order_node.</td></tr>
+                <tr><td><code>gini</code></td><td>A list of domains associated with the author's publication.</td></tr>
+                <tr><td><code>gini_rank</code></td><td>Inequality (gini coefficient) at top-k based on order_rank.</td></tr>
+                <tr><td><code>gini_node</code></td><td>Inequality (gini coefficient) at top-k based on order_node.</td></tr>
+            </tbody>
+        </table>
+
+
+        <div style="background: #d1e4eb; padding: 15px; border-radius: 8px; border-left: 5px solid #4393ad;">
+            <p style="margin: 0; font-style: italic;"><strong>💡 Note:</strong> Use the following thresholds for inequality and inequity:</p>
+            
+            <p><strong>Inequality label:</strong></p> 
+            <ul>
+                <li>If <code>gini >= 0.3</code> and <code>gini < 0.6</code> then moderate</li>
+                <li>If <code>gini < 0.3</code> then equality</li>
+                <li>If <code>gini >= 0.6</code> then skewed</li>
+            </ul>
+            
+            <p><strong>Inequity label:</strong></p> 
+            <ul>
+                <li>If <code>me >= -0.05</code> and <code>me <=0.05</code> then fair</li>
+                <li>If <code>me < -0.05</code> then under-represented</li>
+                <li>If <code>me > -0.05</code> then over-represented</li>
+            </ul> 
+
+        </div>
+
+
+
+
+</body>
+</html>
