@@ -1,7 +1,7 @@
 async function loadNetwork() {
   const networkId = document.getElementById('networkId').value;
   
-  d3.json(`../data/process_data/graph_${networkId}.json`).then(function(graph) {
+  d3.json(`../data/network_generated/graph_${networkId}.json`).then(function(graph) {
     d3.select("svg").selectAll("*").remove(); // Clear previous graph
 
     const svg = d3.select("svg");
@@ -144,31 +144,6 @@ function drawNetwork(nodes, links) {
   }
 }
 
-
-let sliderValue = 5; // default value
-
-const slider1 = d3
-  .sliderHorizontal()
-  .min(0)
-  .max(10)
-  .step(1)
-  .width(300)
-  .displayValue(true)
-  .on('onchange', val => {
-    sliderValue = val;
-    d3.select('#slider1-value').text(val);
-  });
-
-d3.select('#slider1')
-  .call(slider1);
-
-// Use sliderValue to load different networks
-function loadNetwork() {
-  d3.json(`data/network_${sliderValue}.json`).then(data => {
-    drawNetwork(data.nodes, data.links);
-  });
-}
-
-// // Initial load
-// loadNetwork();
+// Initial load
+loadNetwork();
 
