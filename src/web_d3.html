@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Network Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider@1.7.4/dist/d3-simple-slider.min.js"></script>
+    <style>
+        svg {
+            width: 100vw;
+            height: 90vh;
+            border: 1px solid #ccc;
+        }
+
+        .node {
+            stroke: #fff;
+            stroke-width: 1.5px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .minority {
+            fill: #e41a1c;
+        }
+
+        .majority {
+            fill: #377eb8;
+        }
+
+        .link {
+            stroke: #999;
+            stroke-opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+    <label>Network ID:
+        <!-- <input type="number" id="networkId" value="1" min="1" max="4840"> -->
+        <div id="slider1"></div>
+        <span id="slider1-value"></span>
+    </label>
+    <button onclick="loadNetwork()">Load Network</button>
+    <svg></svg>
+    <script src="network.js"></script>
+
+</body>
+
+</html>
