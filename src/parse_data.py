@@ -9,6 +9,7 @@ os.getcwd()
 data = pd.read_csv("../data/raw_data/ranking_minorities.csv")
 
 # %%
+
 # Filter rows where k equals 10
 
 filtered = data[
@@ -35,6 +36,7 @@ print(summary_stats)
 
 # Create a histogram for 'me_node'
 def plot_histogram(data, bins=5):
+
     plt.hist(data["me_node"], bins=bins, edgecolor="black", alpha=0.7)
     plt.title("Histogram of me_node")
     plt.xlabel("me_node")
@@ -47,6 +49,7 @@ def plot_histogram(data, bins=5):
 # --- Create Bins Centered on 0 and Plot ---
 
 # 1. Find the maximum absolute value to create a symmetric range
+
 max_abs_val = filtered_data["me_node"].abs().max()
 
 # 2. Create 6 bin edges to define 5 symmetric bins
@@ -61,8 +64,10 @@ plot_histogram(filtered_data, bins=bin_edges)
 
 # %%
 # --- Add the bins as a new column in the DataFrame ---
+
 filtered_data["me_node_bin"] = pd.cut(
     filtered_data["me_node"], bins=bin_edges, include_lowest=True
+
 )
 
 # %%
@@ -73,6 +78,7 @@ intervals = filtered_data["me_node_bin"].cat.categories
 
 # 2. Calculate the midpoint for each interval and round it
 midpoints = (intervals.left + intervals.right) / 2
+
 
 # 3. Create a mapping from the interval object to its calculated midpoint
 midpoint_map = dict(zip(intervals, midpoints))
@@ -85,6 +91,7 @@ filtered_data["me_node_bin_value"] = (
 # Display the relevant columns to verify the result
 print("\nDataFrame with bin midpoints:")
 print(filtered_data[["me_node", "me_node_bin", "me_node_bin_value"]].head(10))
+
 
 # %%
 # Save the filtered data to CSV

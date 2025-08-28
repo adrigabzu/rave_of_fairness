@@ -142,3 +142,4 @@
 {"id":4567,"h_mm":0.8,"h_MM":0.2,"fm":0.3,"me_node":0.312965368,"me_node_bin":{"closed":"right","closed_right":true,"left":0.202,"mid":0.2695,"open_right":false,"right":0.337},"me_node_bin_value":0.2700000107}
 {"id":4570,"h_mm":0.8,"h_MM":0.5,"fm":0.3,"me_node":0.1309559885,"me_node_bin":{"closed":"right","closed_right":true,"left":0.0674,"mid":0.1347,"open_right":false,"right":0.202},"me_node_bin_value":0.1299999952}
 {"id":4573,"h_mm":0.8,"h_MM":0.8,"fm":0.3,"me_node":-0.1258513709,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.202,"mid":-0.1347,"open_right":false,"right":-0.0674},"me_node_bin_value":-0.1299999952}
+
