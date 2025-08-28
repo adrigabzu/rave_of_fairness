@@ -1,50 +1,195 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Network Graph</title>
+    <meta charset="utf-8" />
+    <title>A Symphony of Fairness</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/d3-simple-slider@1.7.4/dist/d3-simple-slider.min.js"></script>
     <style>
-        svg {
-            width: 100vw;
-            height: 90vh;
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --primary-color: #2c3e50;
+            --secondary-color: #f0f0f0;
+            --font-heading: "Playfair Display", serif;
+            --font-body: "Lato", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            font-weight: 300;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        header h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            background-color: var(--secondary-color);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .slider-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slider-group label {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .slider-group span {
+            margin-top: 0.75rem;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            min-width: 30px;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 4px;
+            background: #ccc;
+            outline: none;
+            border-radius: 2px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid var(--bg-color);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid var(--bg-color);
+        }
+
+        #graph-container {
+            width: 100%;
+            height: 600px;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
             border: 1px solid #ccc;
+            overflow: hidden;
         }
 
-        .node {
-            stroke: #fff;
-            stroke-width: 1.5px;
-            width: 40px;
-            height: 40px;
+        svg {
+            width: 100%;
+            height: 100%;
         }
 
-        .minority {
+        /* Graph styles */
+        .node circle.minority {
             fill: #e41a1c;
         }
 
-        .majority {
+        .node circle.majority {
             fill: #377eb8;
         }
 
         .link {
             stroke: #999;
             stroke-opacity: 0.6;
+            stroke-width: 2px;
+        }
+
+        button {
+            margin-top: 1rem;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1a252f;
         }
     </style>
 </head>
 
 <body>
-    <label>Network ID:
-        <input type="number" id="networkId" value="1" min="1" max="4840">
-        <!-- <div id="slider1"></div>
-        <span id="slider1-value"></span> -->
-    </label>
-    <button onclick="loadNetwork()">Load Network</button>
-    <svg></svg>
-    <script src="network.js"></script>
+    <div class="container">
+        <header>
+            <h1>A Symphony of Fairness</h1>
+            <p>Adjust the parameters to compose a new arrangement of the network.</p>
+        </header>
 
+        <div class="controls">
+            <div class="slider-group">
+                <label for="myRatio">Proportion Minority (fm)</label>
+                <input type="range" min="1" max="10" value="1" class="slider" id="myRatio">
+                <span id="demoRatio">1</span>
+            </div>
+            <div class="slider-group">
+                <label for="myH1">Homophily Majority (h_MM)</label>
+                <input type="range" min="0" max="10" value="1" class="slider" id="myH1">
+                <span id="demoH1">1</span>
+            </div>
+            <div class="slider-group">
+                <label for="myH2">Homophily Minority (h_mm)</label>
+                <input type="range" min="0" max="10" value="1" class="slider" id="myH2">
+                <span id="demoH2">1</span>
+            </div>
+        </div>
+
+        <button onclick="loadNetwork()">Load Network</button>
+
+        <div id="graph-container">
+            <svg></svg>
+        </div>
+    </div>
+
+    <script src="network.js"></script>
 </body>
 
 </html>

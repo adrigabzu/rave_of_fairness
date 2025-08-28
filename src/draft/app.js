@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Initialization (NO CHANGES NEEDED HERE) ---
   const init = async () => {
     try {
-      const response = await fetch("data/lookup.json");
+      const response = await fetch("../data/lookup.json");
       if (!response.ok) throw new Error("Lookup file not found");
       lookupData = await response.json();
     } catch (error) {
