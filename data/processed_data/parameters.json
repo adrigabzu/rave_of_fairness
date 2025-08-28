@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {"id":24,"h_mm":0.2,"h_MM":0.2,"fm":0.1,"me_node":-0.0109632035,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.0674,"mid":0.0,"open_right":false,"right":0.0674},"me_node_bin_value":0.0}
 {"id":27,"h_mm":0.2,"h_MM":0.5,"fm":0.1,"me_node":0.0216125541,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.0674,"mid":0.0,"open_right":false,"right":0.0674},"me_node_bin_value":0.0}
 {"id":30,"h_mm":0.2,"h_MM":0.8,"fm":0.1,"me_node":0.0011580087,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.0674,"mid":0.0,"open_right":false,"right":0.0674},"me_node_bin_value":0.0}
@@ -143,23 +142,3 @@
 {"id":4567,"h_mm":0.8,"h_MM":0.2,"fm":0.3,"me_node":0.312965368,"me_node_bin":{"closed":"right","closed_right":true,"left":0.202,"mid":0.2695,"open_right":false,"right":0.337},"me_node_bin_value":0.2700000107}
 {"id":4570,"h_mm":0.8,"h_MM":0.5,"fm":0.3,"me_node":0.1309559885,"me_node_bin":{"closed":"right","closed_right":true,"left":0.0674,"mid":0.1347,"open_right":false,"right":0.202},"me_node_bin_value":0.1299999952}
 {"id":4573,"h_mm":0.8,"h_MM":0.8,"fm":0.3,"me_node":-0.1258513709,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.202,"mid":-0.1347,"open_right":false,"right":-0.0674},"me_node_bin_value":-0.1299999952}
-=======
-{"id":4259,"h_mm":0.2,"h_MM":0.2,"fm":0.1,"me_node":0.2273304473,"me_node_bin":{"closed":"right","closed_right":true,"left":0.188,"mid":0.2505,"open_right":false,"right":0.313},"me_node_bin_value":0.25}
-{"id":4262,"h_mm":0.2,"h_MM":0.5,"fm":0.1,"me_node":-0.0045454545,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.0626,"mid":0.0,"open_right":false,"right":0.0626},"me_node_bin_value":0.0}
-{"id":4265,"h_mm":0.2,"h_MM":0.8,"fm":0.1,"me_node":-0.0727453102,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.188,"mid":-0.1253,"open_right":false,"right":-0.0626},"me_node_bin_value":-0.1299999952}
-{"id":4292,"h_mm":0.5,"h_MM":0.2,"fm":0.1,"me_node":0.2071789322,"me_node_bin":{"closed":"right","closed_right":true,"left":0.188,"mid":0.2505,"open_right":false,"right":0.313},"me_node_bin_value":0.25}
-{"id":4295,"h_mm":0.5,"h_MM":0.5,"fm":0.1,"me_node":-0.0218795094,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.0626,"mid":0.0,"open_right":false,"right":0.0626},"me_node_bin_value":0.0}
-{"id":4298,"h_mm":0.5,"h_MM":0.8,"fm":0.1,"me_node":-0.072478355,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.188,"mid":-0.1253,"open_right":false,"right":-0.0626},"me_node_bin_value":-0.1299999952}
-{"id":4325,"h_mm":0.8,"h_MM":0.2,"fm":0.1,"me_node":0.2480880231,"me_node_bin":{"closed":"right","closed_right":true,"left":0.188,"mid":0.2505,"open_right":false,"right":0.313},"me_node_bin_value":0.25}
-{"id":4328,"h_mm":0.8,"h_MM":0.5,"fm":0.1,"me_node":-0.0311580087,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.0626,"mid":0.0,"open_right":false,"right":0.0626},"me_node_bin_value":0.0}
-{"id":4331,"h_mm":0.8,"h_MM":0.8,"fm":0.1,"me_node":-0.0699531025,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.188,"mid":-0.1253,"open_right":false,"right":-0.0626},"me_node_bin_value":-0.1299999952}
-{"id":4501,"h_mm":0.2,"h_MM":0.2,"fm":0.3,"me_node":0.1386363636,"me_node_bin":{"closed":"right","closed_right":true,"left":0.0626,"mid":0.1253,"open_right":false,"right":0.188},"me_node_bin_value":0.1299999952}
-{"id":4504,"h_mm":0.2,"h_MM":0.5,"fm":0.3,"me_node":-0.0913239538,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.188,"mid":-0.1253,"open_right":false,"right":-0.0626},"me_node_bin_value":-0.1299999952}
-{"id":4507,"h_mm":0.2,"h_MM":0.8,"fm":0.3,"me_node":-0.2140548341,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.314,"mid":-0.251,"open_right":false,"right":-0.188},"me_node_bin_value":-0.25}
-{"id":4534,"h_mm":0.5,"h_MM":0.2,"fm":0.3,"me_node":0.2343939394,"me_node_bin":{"closed":"right","closed_right":true,"left":0.188,"mid":0.2505,"open_right":false,"right":0.313},"me_node_bin_value":0.25}
-{"id":4537,"h_mm":0.5,"h_MM":0.5,"fm":0.3,"me_node":-0.026984127,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.0626,"mid":0.0,"open_right":false,"right":0.0626},"me_node_bin_value":0.0}
-{"id":4540,"h_mm":0.5,"h_MM":0.8,"fm":0.3,"me_node":-0.2013059163,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.314,"mid":-0.251,"open_right":false,"right":-0.188},"me_node_bin_value":-0.25}
-{"id":4567,"h_mm":0.8,"h_MM":0.2,"fm":0.3,"me_node":0.312965368,"me_node_bin":{"closed":"right","closed_right":true,"left":0.188,"mid":0.2505,"open_right":false,"right":0.313},"me_node_bin_value":0.25}
-{"id":4570,"h_mm":0.8,"h_MM":0.5,"fm":0.3,"me_node":0.1309559885,"me_node_bin":{"closed":"right","closed_right":true,"left":0.0626,"mid":0.1253,"open_right":false,"right":0.188},"me_node_bin_value":0.1299999952}
-{"id":4573,"h_mm":0.8,"h_MM":0.8,"fm":0.3,"me_node":-0.1258513709,"me_node_bin":{"closed":"right","closed_right":true,"left":-0.188,"mid":-0.1253,"open_right":false,"right":-0.0626},"me_node_bin_value":-0.1299999952}
->>>>>>> add-data-conversion-script
