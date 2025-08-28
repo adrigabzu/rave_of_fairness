@@ -44,10 +44,9 @@ async function loadNetwork() {
 // Draw network
 // -------------------------
 function drawNetwork(graph) {
+  if (!graph) return;
 
-  if (!graph) return; // Nothing to draw
-
-  d3.select("svg").selectAll("*").remove(); // Clear previous graph
+  d3.select("svg").selectAll("*").remove();
   const svg = d3.select("svg");
   const width = +svg.attr("width") || window.innerWidth;
   const height = +svg.attr("height") || window.innerHeight;
@@ -57,32 +56,24 @@ function drawNetwork(graph) {
   const UNCONNECTED_OPACITY = 0.3;
 
   const linkedNodeIds = new Set();
-  graph.links.forEach((link) => {
+  graph.links.forEach(link => {
     linkedNodeIds.add(link.source.id || link.source);
     linkedNodeIds.add(link.target.id || link.target);
   });
-  graph.nodes.forEach((node) => {
+  graph.nodes.forEach(node => {
     node.isConnected = linkedNodeIds.has(node.id);
   });
 
   // --- Simulation ---
-  const simulation = d3
-    .forceSimulation(graph.nodes)
-    .force(
-      "link",
-      d3
-        .forceLink(graph.links)
-        .id((d) => d.id)
-        .distance(100)
-    )
+  const simulation = d3.forceSimulation(graph.nodes)
+    .force("link", d3.forceLink(graph.links).id(d => d.id).distance(100))
     .force("charge", d3.forceManyBody().strength(-200))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("x", d3.forceX(width / 2).strength(0.1))
     .force("y", d3.forceY(height / 2).strength(0.1));
 
-  // --- Draw links ---
-  const link = container
-    .append("g")
+  // --- Links ---
+  const link = container.append("g")
     .attr("class", "links")
     .selectAll("line")
     .data(graph.links)
@@ -92,92 +83,50 @@ function drawNetwork(graph) {
     .attr("stroke-opacity", 0.2)
     .attr("stroke-width", 2);
 
-  // --- Nodes as groups (to allow crown overlay) ---
-  // This is the OUTER group, responsible for POSITIONING and DRAGGING.
-  const node = container
-    .append("g")
+  // --- Nodes (outer group for dragging) ---
+  const node = container.append("g")
     .attr("class", "nodes")
     .selectAll("g")
     .data(graph.nodes)
     .enter()
     .append("g")
-    .attr("opacity", (d) =>
-      d.isConnected ? CONNECTED_OPACITY : UNCONNECTED_OPACITY
-    )
-    .call(
-      d3
-        .drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended)
+    .attr("opacity", d => d.isConnected ? CONNECTED_OPACITY : UNCONNECTED_OPACITY)
+    .call(d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended)
     );
 
-    // NEW: Create an INNER group for VISUALS (images and animation).
-    // This separates the positioning transform from the animation transform.
-    const nodeContent = node.append("g");
+  // --- Inner group for visuals ---
+  const nodeContent = node.append("g");
 
-    node.append("image")
-        .attr("xlink:href", d => d.minority === 1 ? "../images/boba.svg" : "../images/tika.svg")
-        .attr("width", 50)
-        .attr("height", 50)
-        .attr("x", -20)
-        .attr("y", -20);
-
-    node.filter(d => d.isTop10)
-        .append("image")
-        .attr("xlink:href", "../images/crown.svg")
-        .attr("width", 60)
-        .attr("height", 60)
-        .attr("x", -20)
-        .attr("y", -25);
-
-    simulation.on("tick", () => {
-        link
-            .attr("x1", d => d.source.x)
-            .attr("y1", d => d.source.y)
-            .attr("x2", d => d.target.x)
-            .attr("y2", d => d.target.y);
-
-    node.attr("transform", d => `translate(${d.x},${d.y})`);
-  });
-
-    
-  // Apply the wobble class ONLY to the inner group of the top 10 nodes.
-  nodeContent
-    .filter((d) => d.isTop10)
-    .attr("class", "top10-wobble");
-
-  // Append images to the INNER group.
-  nodeContent
-    .append("image")
-    .attr("xlink:href", (d) =>
-      d.minority === 1 ? "../images/boba.svg" : "../images/tika.svg"
-    )
+  // Images
+  nodeContent.append("image")
+    .attr("xlink:href", d => d.minority === 1 ? "../images/boba.svg" : "../images/tika.svg")
     .attr("width", 50)
     .attr("height", 50)
     .attr("x", -20)
     .attr("y", -20);
 
-  // Append the crown image to the INNER group of the top 10 nodes.
-  nodeContent
-    .filter((d) => d.isTop10)
+  // Crowns only for top 10
+  nodeContent.filter(d => d.isTop10)
     .append("image")
     .attr("xlink:href", "../images/crown.svg")
     .attr("width", 60)
     .attr("height", 60)
     .attr("x", -20)
-    .attr("y", -25);
+    .attr("y", -25)
+    .attr("class", "top10-wobble");
 
-  // --- Tick update (move nodes) ---
+  // --- Tick ---
   simulation.on("tick", () => {
     link
-      .attr("x1", (d) => d.source.x)
-      .attr("y1", (d) => d.source.y)
-      .attr("x2", (d) => d.target.x)
-      .attr("y2", (d) => d.target.y);
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x)
+      .attr("y2", d => d.target.y);
 
-    // The simulation transform is applied to the OUTER group.
-    node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+    node.attr("transform", d => `translate(${d.x},${d.y})`);
   });
 
   // --- Drag functions ---
@@ -196,13 +145,11 @@ function drawNetwork(graph) {
     d.fy = null;
   }
 
-  // --- Zoom functionality ---
+  // --- Zoom ---
   function zoomed(event) {
     container.attr("transform", event.transform);
   }
-  const zoom = d3.zoom().scaleExtent([0.1, 8]).on("zoom", zoomed);
-  svg.call(zoom);
-
+  svg.call(d3.zoom().scaleExtent([0.1, 8]).on("zoom", zoomed));
 }
 
 
