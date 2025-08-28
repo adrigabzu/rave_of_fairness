@@ -12,21 +12,19 @@ data = pd.read_csv("../data/raw_data/ranking_minorities.csv")
 # Filter rows where k equals 10
 
 filtered = data[
-    (data['k'] == 10)
-    & (data['h_mm'].isin([0.2, 0.5, 0.8]))
-    & (data['h_MM'].isin([0.2, 0.5, 0.8]))
-    & (data['fm'].isin([0.1, 0.3]))
-    & (data['plo_m'] == 3.0)
-    & (data['plo_M'] == 3.0)
-    & (data['d'] == 0.1)
-
-
+    (data["k"] == 10)
+    & (data["h_mm"].isin([0.2, 0.5, 0.8]))
+    & (data["h_MM"].isin([0.2, 0.5, 0.8]))
+    & (data["fm"].isin([0.1, 0.3]))
+    & (data["plo_m"] == 3.0)
+    & (data["plo_M"] == 3.0)
+    & (data["d"] == 0.1)
+]
 # %%
 # Select specific columns
 
-selected_columns = ['id', 'h_mm', 'h_MM', 'fm', 'me_node']
+selected_columns = ["id", "h_mm", "h_MM", "fm", "me_node"]
 filtered_data = filtered[selected_columns]
-
 
 
 # Generate summary statistics
