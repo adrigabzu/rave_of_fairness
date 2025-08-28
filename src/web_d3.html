@@ -29,62 +29,93 @@
         }
 
         .container {
-            width: 90%;
-            max-width: 1000px;
+            width: 95%;
+            max-width: 1400px;
             text-align: center;
-            padding: 2rem 0;
+            padding: 10px 0;
+            /* reduced padding */
         }
 
         header h1 {
             font-family: var(--font-heading);
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 32px;
+            /* smaller title */
+            font-weight: 600;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            margin: 5px 0;
+            /* remove top margin */
         }
 
         header p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+            font-size: 16px;
+            margin: 5px 0 15px 0;
+            /* smaller margins */
             opacity: 0.9;
         }
 
         .controls {
             display: flex;
-            justify-content: space-around;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            /* center instead of left */
+            gap: 20px;
             background-color: var(--secondary-color);
-            padding: 1.5rem 2rem;
+            padding: 10px 15px;
             border-radius: 8px;
             border: 1px solid #ddd;
         }
 
         .slider-group {
-            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .slider-group label {
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            font-size: 14px;
+            margin-bottom: 5px;
             font-weight: 400;
         }
 
         .slider-group span {
-            margin-top: 0.75rem;
-            font-size: 1.2rem;
+            margin-top: 5px;
+            font-size: 16px;
             color: var(--primary-color);
             font-weight: 700;
             min-width: 30px;
+            text-align: center;
         }
+
+        .slider-ticks {
+            position: relative;
+            width: 120px;
+            /* match input range width */
+            height: 10px;
+            margin-top: 2px;
+        }
+
+        .slider-ticks span {
+            position: absolute;
+            top: 0;
+            width: 2px;
+            height: 8px;
+            background: #888;
+        }
+
+        .slider-ticks label {
+            position: absolute;
+            top: 10px;
+            font-size: 10px;
+            transform: translateX(-50%);
+        }
+
 
         input[type="range"] {
             -webkit-appearance: none;
             appearance: none;
-            width: 100%;
+            width: 120px;
+            /* smaller width */
             height: 4px;
             background: #ccc;
             outline: none;
@@ -94,8 +125,8 @@
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             background: var(--primary-color);
             cursor: pointer;
             border-radius: 50%;
@@ -103,21 +134,39 @@
         }
 
         input[type="range"]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             background: var(--primary-color);
             cursor: pointer;
             border-radius: 50%;
             border: 2px solid var(--bg-color);
         }
 
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            height: 40px;
+            align-self: center;
+        }
+
+        button:hover {
+            background-color: #1a252f;
+        }
+
         #graph-container {
             width: 100%;
-            height: 600px;
+            height: calc(100vh - 180px);
+            /* nearly full screen */
             background-color: var(--secondary-color);
             border-radius: 8px;
             border: 1px solid #ccc;
             overflow: hidden;
+            margin-top: 10px;
         }
 
         svg {
@@ -139,22 +188,9 @@
             stroke-opacity: 0.6;
             stroke-width: 2px;
         }
-
-        button {
-            margin-top: 1rem;
-            padding: 0.7rem 1.5rem;
-            font-size: 1rem;
-            background-color: var(--primary-color);
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #1a252f;
-        }
     </style>
+
+
 </head>
 
 <body>
@@ -166,23 +202,26 @@
 
         <div class="controls">
             <div class="slider-group">
-                <label for="myRatio">Proportion Minority (fm)</label>
-                <input type="range" min="1" max="10" value="1" class="slider" id="myRatio">
-                <span id="demoRatio">1</span>
+                <label for="sliderRatio">Proportion Minority (fm)</label>
+                <input type="range" id="sliderRatio" min="0" max="0.5" step="0.05" value="0.1">
+                <div class="slider-ticks" id="sliderRatioTicks"></div>
+                <span id="sliderRatioValue">0.1</span>
             </div>
-            <div class="slider-group">
-                <label for="myH1">Homophily Majority (h_MM)</label>
-                <input type="range" min="0" max="10" value="1" class="slider" id="myH1">
-                <span id="demoH1">1</span>
-            </div>
-            <div class="slider-group">
-                <label for="myH2">Homophily Minority (h_mm)</label>
-                <input type="range" min="0" max="10" value="1" class="slider" id="myH2">
-                <span id="demoH2">1</span>
-            </div>
-        </div>
 
-        <button onclick="loadNetwork()">Load Network</button>
+            <div class="slider-group">
+                <label for="sliderHomophilyMajority">Homophily Majority (h_MM)</label>
+                <input type="range" id="sliderHomophilyMajority" min="1" max="10" step="1" value="1">
+                <span id="sliderHomophilyMajorityValue">1</span>
+            </div>
+
+            <div class="slider-group">
+                <label for="sliderHomophilyMinority">Homophily Minority (h_mm)</label>
+                <input type="range" id="sliderHomophilyMinority" min="1" max="10" step="1" value="1">
+                <span id="sliderHomophilyMinorityValue">1</span>
+            </div>
+
+            <button onclick="loadNetwork()">Load Network</button>
+        </div>
 
         <div id="graph-container">
             <svg></svg>
