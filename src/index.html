@@ -56,22 +56,51 @@
 	<body
 		class="font-sans bg-gray-900 text-gray-300 flex flex-col min-h-screen"
 	>
-		<!-- Header -->
-		<header class="text-center py-4 border-b border-gray-700">
-			<h1 class="font-title text-4xl font-bold text-blue-400">
-				A Symphony of Fairness
-			</h1>
-			<p class="text-base mt-1 text-gray-400">
-				Adjust the parameters to compose a new arrangement of the network.
-			</p>
-		</header>
-
 		<!-- Main Content Area -->
-		<div class="flex flex-1 w-full overflow-hidden">
-			<!-- Side Panel -->
+		<div class="grid grid-cols-4 flex-1 w-full">
+			<!-- Left Panel (1/4) - Text -->
 			<aside
-				id="side-panel"
-				class="w-[280px] flex-shrink-0 bg-gray-800 border-r border-gray-700 p-6 overflow-y-auto flex flex-col space-y-8"
+				id="left-panel"
+				class="col-span-1 bg-gray-800 p-6 flex flex-col space-y-4 border-r border-gray-700"
+			>
+				<h1 class="font-title text-4xl font-bold text-blue-400">
+					A Symphony of Fairness
+				</h1>
+				<p class="text-base mt-1 text-gray-400">
+					The spectrum of representation for ranked algorithms in a networked social scene with unequal demographics (anytime there is a majority and a minority) 
+				</p>
+				<div class="text-sm text-gray-500 pt-4">
+					<h3 class="font-semibold text-gray-400 mb-2">
+						A handful of bobas walk into a bar…
+					</h3>
+					<p class="mb-2">
+						They want to join the tikas, who make up the majority of partiers on the dance floor. Throughout the night, an emcee robot—using a ranking algorithm—is always highlighting ten individuals based on how inclusively or exclusively the bobas and tikas are connecting with each other.
+					</p>
+					<p class="mb-2">
+						The proportion of Bobas (minority group) and Tikas (majority) who the emcee robot is highlighting is not always equal to their demographics in the group. The proportion of the 10 individuals that the emcee highlights can either underrepresent, overrepresent, or equally (fairly) represent the ratio of bobas and tikas in the bar. The proportion of bobas the emcee (algorithm) highlights is not only based on the ratio of bobas to tikas, but also on how well the bobas and tikas connect to their own group and to others.
+					</p>
+					<!-- <p>
+						<strong class="text-gray-300">Homophily Minority (h_mm):</strong>
+						Adjusts the tendency of minority nodes to connect with
+						other minority nodes.
+					</p> -->
+				</div>
+			</aside>
+
+			<!-- Middle Panel (2/4) - Graph -->
+			<main id="main-content" class="col-span-2 flex min-w-0 p-4">
+				<div
+					id="graph-container"
+					class="flex-1 bg-white rounded-lg overflow-hidden"
+				>
+					<svg class="w-full h-full"></svg>
+				</div>
+			</main>
+
+			<!-- Right Panel (1/4) - Controls -->
+			<aside
+				id="right-panel"
+				class="col-span-1 bg-gray-800 border-l border-gray-700 p-6 overflow-y-auto flex flex-col space-y-8"
 			>
 				<!-- Parameter Selection Section -->
 				<div id="parameter-selection" class="flex flex-col items-center">
@@ -162,16 +191,6 @@
 					</ul>
 				</div>
 			</aside>
-
-			<!-- Graph -->
-			<main id="main-content" class="flex-1 flex min-w-0 p-4">
-				<div
-					id="graph-container"
-					class="flex-1 bg-gray-950 rounded-lg border border-gray-700 overflow-hidden shadow-inner"
-				>
-					<svg class="w-full h-full"></svg>
-				</div>
-			</main>
 		</div>
 		<script src="network.js"></script>
 	</body>

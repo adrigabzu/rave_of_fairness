@@ -52,9 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadNetwork() {
 	// --- Grab slider values ---
 	// Note: The 'value' attribute is now set by the custom slider logic above
-	const sliderRatio = document.getElementById("sliderRatio").value;
-	const sliderH1 = document.getElementById("sliderHomophilyMajority").value;
-	const sliderH2 = document.getElementById("sliderHomophilyMinority").value;
+	// const sliderRatio = document.getElementById("sliderRatio").value;
+	// const sliderH1 = document.getElementById("sliderHomophilyMajority").value;
+	// const sliderH2 = document.getElementById("sliderHomophilyMinority").value;
+
+  const sliderRatio = Math.round(parseFloat(document.getElementById("sliderRatioValue").textContent) * 10);
+  const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
+  const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
 
 	console.log("Slider values:", sliderRatio, sliderH1, sliderH2);
 
