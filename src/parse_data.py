@@ -10,8 +10,7 @@ data = pd.read_csv("../data/raw_data/ranking_minorities.csv")
 
 # %%
 
-# Filter rows where k equals 10
-
+# Filter rows where k equals 10 and other    specified conditions
 filtered = data[
     (data["k"] == 10)
     & (data["h_mm"].isin([0.2, 0.5, 0.8]))
@@ -67,7 +66,6 @@ plot_histogram(filtered_data, bins=bin_edges)
 
 filtered_data["me_node_bin"] = pd.cut(
     filtered_data["me_node"], bins=bin_edges, include_lowest=True
-
 )
 
 # %%
