@@ -255,5 +255,8 @@ async function updateNetwork() {
 // --- Connect button to update ---
 // This replaces the `onclick` attribute in the HTML for better practice
 document
-	.querySelector('button[onclick="updateNetwork()"]')
-	.addEventListener("click", updateNetwork);
+  .querySelector('button[onclick="updateNetwork()"]')
+  .addEventListener("click", (event) => {
+    event.preventDefault(); // <-- prevent page reload
+    updateNetwork();
+  });
