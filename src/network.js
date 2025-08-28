@@ -84,7 +84,7 @@ function drawNetwork(graph) {
     .attr("stroke-width", 2);
 
   // --- Nodes (outer group for dragging) ---
-  const node = container.append("g")
+    const node = container.append("g")
     .attr("class", "nodes")
     .selectAll("g")
     .data(graph.nodes)
@@ -92,42 +92,44 @@ function drawNetwork(graph) {
     .append("g")
     .attr("opacity", d => d.isConnected ? CONNECTED_OPACITY : UNCONNECTED_OPACITY)
     .call(d3.drag()
-      .on("start", dragstarted)
-      .on("drag", dragged)
-      .on("end", dragended)
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended)
     );
 
-  // --- Inner group for visuals ---
-  const nodeContent = node.append("g");
 
-  // Images
-  nodeContent.append("image")
+  // --- Inner group for visuals ---
+  const nodeContent = node
+    .append("g")
+    .attr("class", d => d.isTop10 ? "top10-wobble" : ""); // Wobble applies to whole inner group
+
+  // Node image
+    nodeContent.append("image")
     .attr("xlink:href", d => d.minority === 1 ? "../images/boba.svg" : "../images/tika.svg")
     .attr("width", 50)
     .attr("height", 50)
     .attr("x", -20)
     .attr("y", -20);
 
-  // Crowns only for top 10
-  nodeContent.filter(d => d.isTop10)
+    // Crown for top 10 nodes
+    nodeContent.filter(d => d.isTop10)
     .append("image")
     .attr("xlink:href", "../images/crown.svg")
     .attr("width", 60)
     .attr("height", 60)
     .attr("x", -20)
-    .attr("y", -25)
-    .attr("class", "top10-wobble");
+    .attr("y", -25);
 
   // --- Tick ---
   simulation.on("tick", () => {
     link
-      .attr("x1", d => d.source.x)
-      .attr("y1", d => d.source.y)
-      .attr("x2", d => d.target.x)
-      .attr("y2", d => d.target.y);
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y);
 
     node.attr("transform", d => `translate(${d.x},${d.y})`);
-  });
+    });
 
   // --- Drag functions ---
   function dragstarted(event, d) {
