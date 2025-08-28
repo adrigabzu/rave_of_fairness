@@ -16,6 +16,8 @@ filtered_data = data[
     & (data['h_mm'].isin([0.2, 0.5, 0.8]))
     & (data['h_MM'].isin([0.2, 0.5, 0.8]))
     & (data['fm'].isin([0.1, 0.3]))
+    & (data['plo_m'] == 3.0)
+    & (data['plo_M'] == 3.0)
 ]
 
 # %%
@@ -93,3 +95,4 @@ filtered_data.to_csv("../data/processed_data/parameters.csv", index=False)
 filtered_data.to_json(
     "../data/processed_data/parameters.json", orient="records", lines=True
 )
+# %%
