@@ -15,7 +15,32 @@
             --font-heading: "Playfair Display", serif;
             --font-body: "Lato", sans-serif;
         }
+        /* Add this to your main CSS file */
+        .top10-wobble {
+        /*
+            animation: [animation-name] [duration] [timing-function] [iteration-count];
+        */
+        animation: wobble 2.5s ease-in-out infinite;
+        }
 
+        @keyframes wobble {
+        0% {
+            transform: rotate(0deg) translateY(0px);
+        }
+        25% {
+            transform: rotate(5deg) translateY(-4px);
+        }
+        50% {
+            transform: rotate(0deg) translateY(0px);
+        }
+        75% {
+            transform: rotate(-5deg) translateY(-4px);
+        }
+        100% {
+            transform: rotate(0deg) translateY(0px);
+        }
+
+        }
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
