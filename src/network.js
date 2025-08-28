@@ -14,9 +14,11 @@ async function loadNetwork() {
     const sliderH2 = document.getElementById("sliderHomophilyMinority").value;
 
     console.log("Slider values:", sliderRatio, sliderH1, sliderH2);
-
+    
     // Build JSON filename from slider values
     const ratioValue = Math.round(sliderRatio * 10); 
+    console.log("Looking for:", ratioValue, sliderH1, sliderH2);
+
     const fileName = `../data/network_generated/graph_${ratioValue}_${sliderH1}_${sliderH2}.json`;
 
     console.log("Loading:", fileName);
