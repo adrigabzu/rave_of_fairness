@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="b" x1="-507.54" y1="9.91" x2="-495.49" y2="21.97" gradientTransform="translate(-419.29) rotate(-180) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#08f0f1"/>
+      <stop offset="1" stop-color="#1b4267"/>
+    </linearGradient>
+    <linearGradient id="c" x1="-506.41" y1="9.05" x2="-494.19" y2="21.27" xlink:href="#b"/>
+    <linearGradient id="d" x1="-505.25" y1="8.27" x2="-492.88" y2="20.65" xlink:href="#b"/>
+    <linearGradient id="e" x1="-504.09" y1="7.57" x2="-491.56" y2="20.1" xlink:href="#b"/>
+    <linearGradient id="f" x1="-502.92" y1="6.95" x2="-490.23" y2="19.64" xlink:href="#b"/>
+    <linearGradient id="g" x1="-501.75" y1="6.41" x2="-488.9" y2="19.25" xlink:href="#b"/>
+    <linearGradient id="h" x1="-500.57" y1="5.94" x2="-487.57" y2="18.94" xlink:href="#b"/>
+    <linearGradient id="i" x1="-499.4" y1="5.54" x2="-486.23" y2="18.7" xlink:href="#b"/>
+    <linearGradient id="j" x1="-498.23" y1="5.21" x2="-484.91" y2="18.53" xlink:href="#b"/>
+    <linearGradient id="k" x1="-497.06" y1="4.96" x2="-483.59" y2="18.44" xlink:href="#b"/>
+    <linearGradient id="l" x1="-495.91" y1="4.77" x2="-482.28" y2="18.41" xlink:href="#b"/>
+    <linearGradient id="m" x1="-494.77" y1="4.66" x2="-480.98" y2="18.45" xlink:href="#b"/>
+    <linearGradient id="n" x1="-493.65" y1="4.61" x2="-479.7" y2="18.56" xlink:href="#b"/>
+    <linearGradient id="o" x1="-492.55" y1="4.62" x2="-478.44" y2="18.73" xlink:href="#b"/>
+    <linearGradient id="p" x1="-491.47" y1="4.7" x2="-477.2" y2="18.96" xlink:href="#b"/>
+    <linearGradient id="q" x1="-490.42" y1="4.84" x2="-475.99" y2="19.26" xlink:href="#b"/>
+    <linearGradient id="r" x1="-489.39" y1="5.04" x2="-474.81" y2="19.62" xlink:href="#b"/>
+    <linearGradient id="s" x1="-488.4" y1="5.3" x2="-473.66" y2="20.04" xlink:href="#b"/>
+    <linearGradient id="t" x1="-487.44" y1="5.63" x2="-472.54" y2="20.52" xlink:href="#b"/>
+    <linearGradient id="u" x1="-486.52" y1="6" x2="-471.47" y2="21.06" xlink:href="#b"/>
+    <linearGradient id="v" x1="-485.64" y1="6.44" x2="-470.43" y2="21.65" xlink:href="#b"/>
+    <linearGradient id="w" x1="-484.81" y1="6.93" x2="-469.44" y2="22.3" xlink:href="#b"/>
+    <linearGradient id="x" x1="-484.02" y1="7.47" x2="-468.5" y2="23" xlink:href="#b"/>
+    <linearGradient id="y" x1="-483.29" y1="8.06" x2="-467.6" y2="23.75" xlink:href="#b"/>
+    <linearGradient id="z" x1="-482.61" y1="8.7" x2="-466.76" y2="24.55" xlink:href="#b"/>
+    <linearGradient id="aa" x1="-481.98" y1="9.39" x2="-465.98" y2="25.4" xlink:href="#b"/>
+    <linearGradient id="ab" x1="-481.41" y1="10.13" x2="-465.25" y2="26.3" xlink:href="#b"/>
+    <linearGradient id="ac" x1="-480.91" y1="10.92" x2="-464.59" y2="27.24" xlink:href="#b"/>
+    <linearGradient id="ad" x1="-480.47" y1="11.75" x2="-464" y2="28.23" xlink:href="#b"/>
+    <linearGradient id="ae" x1="-480.1" y1="12.63" x2="-463.47" y2="29.26" xlink:href="#b"/>
+    <linearGradient id="af" x1="-479.81" y1="13.54" x2="-463.01" y2="30.34" xlink:href="#b"/>
+    <linearGradient id="ag" x1="-479.58" y1="14.5" x2="-462.63" y2="31.45" xlink:href="#b"/>
+    <linearGradient id="ah" x1="-479.44" y1="15.5" x2="-462.33" y2="32.61" xlink:href="#b"/>
+    <linearGradient id="ai" x1="-479.37" y1="16.53" x2="-462.11" y2="33.8" xlink:href="#b"/>
+    <linearGradient id="aj" x1="-479.39" y1="17.61" x2="-461.97" y2="35.03" xlink:href="#b"/>
+    <linearGradient id="ak" x1="-479.5" y1="18.71" x2="-461.92" y2="36.29" xlink:href="#b"/>
+    <linearGradient id="al" x1="-479.7" y1="19.86" x2="-461.96" y2="37.59" xlink:href="#b"/>
+    <linearGradient id="am" x1="-479.99" y1="21.03" x2="-462.09" y2="38.93" xlink:href="#b"/>
+    <linearGradient id="an" x1="-480.38" y1="22.24" x2="-462.32" y2="40.29" xlink:href="#b"/>
+    <linearGradient id="ao" x1="-480.86" y1="23.47" x2="-462.65" y2="41.68" xlink:href="#b"/>
+    <linearGradient id="ap" x1="-481.45" y1="24.74" x2="-463.08" y2="43.11" xlink:href="#b"/>
+    <linearGradient id="aq" x1="-482.15" y1="26.03" x2="-463.62" y2="44.55" xlink:href="#b"/>
+    <linearGradient id="ar" x1="-482.95" y1="27.34" x2="-464.26" y2="46.03" xlink:href="#b"/>
+    <linearGradient id="as" x1="-483.86" y1="28.69" x2="-465.02" y2="47.53" xlink:href="#b"/>
+    <linearGradient id="at" x1="-484.89" y1="30.05" x2="-465.89" y2="49.05" xlink:href="#b"/>
+    <linearGradient id="au" x1="-486.04" y1="31.44" x2="-466.88" y2="50.6" xlink:href="#b"/>
+    <linearGradient id="av" x1="-487.31" y1="32.85" x2="-467.99" y2="52.16" xlink:href="#b"/>
+    <linearGradient id="aw" x1="-488.7" y1="34.27" x2="-469.22" y2="53.75" xlink:href="#b"/>
+    <linearGradient id="ax" x1="-490.14" y1="35.65" x2="-470.5" y2="55.28" xlink:href="#b"/>
+    <linearGradient id="ay" x1="-491.4" y1="36.92" x2="-471.61" y2="56.71" xlink:href="#b"/>
+    <linearGradient id="az" x1="-492.55" y1="38.19" x2="-472.6" y2="58.14" xlink:href="#b"/>
+    <linearGradient id="ba" x1="-493.57" y1="39.44" x2="-473.47" y2="59.55" xlink:href="#b"/>
+    <linearGradient id="bb" x1="-494.49" y1="40.68" x2="-474.22" y2="60.95" xlink:href="#b"/>
+    <linearGradient id="bc" x1="-495.29" y1="41.91" x2="-474.87" y2="62.33" xlink:href="#b"/>
+    <linearGradient id="bd" x1="-495.98" y1="43.13" x2="-475.4" y2="63.71" xlink:href="#b"/>
+    <linearGradient id="be" x1="-496.57" y1="44.32" x2="-475.83" y2="65.06" xlink:href="#b"/>
+    <linearGradient id="bf" x1="-497.06" y1="45.51" x2="-476.16" y2="66.4" xlink:href="#b"/>
+    <linearGradient id="bg" x1="-497.44" y1="46.67" x2="-476.39" y2="67.72" xlink:href="#b"/>
+    <linearGradient id="bh" x1="-497.73" y1="47.81" x2="-476.52" y2="69.02" xlink:href="#b"/>
+    <linearGradient id="bi" x1="-497.93" y1="48.94" x2="-476.56" y2="70.31" xlink:href="#b"/>
+    <linearGradient id="bj" x1="-498.04" y1="50.04" x2="-476.51" y2="71.57" xlink:href="#b"/>
+    <linearGradient id="bk" x1="-498.06" y1="51.12" x2="-476.37" y2="72.8" xlink:href="#b"/>
+    <linearGradient id="bl" x1="-497.99" y1="52.17" x2="-476.15" y2="74.01" xlink:href="#b"/>
+    <linearGradient id="bm" x1="-497.85" y1="53.2" x2="-475.85" y2="75.2" xlink:href="#b"/>
+    <linearGradient id="bn" x1="-497.62" y1="54.2" x2="-475.46" y2="76.36" xlink:href="#b"/>
+    <linearGradient id="bo" x1="-497.32" y1="55.18" x2="-475.01" y2="77.49" xlink:href="#b"/>
+    <linearGradient id="bp" x1="-496.95" y1="56.12" x2="-474.47" y2="78.6" xlink:href="#b"/>
+    <linearGradient id="bq" x1="-496.51" y1="57.04" x2="-473.88" y2="79.67" xlink:href="#b"/>
+    <linearGradient id="br" x1="-496" y1="57.92" x2="-473.21" y2="80.71" xlink:href="#b"/>
+    <linearGradient id="bs" x1="-495.43" y1="58.77" x2="-472.48" y2="81.71" xlink:href="#b"/>
+    <linearGradient id="bt" x1="-494.8" y1="59.58" x2="-471.69" y2="82.69" xlink:href="#b"/>
+    <linearGradient id="bu" x1="-494.11" y1="60.36" x2="-470.84" y2="83.63" xlink:href="#b"/>
+    <linearGradient id="bv" x1="-493.36" y1="61.1" x2="-469.94" y2="84.53" xlink:href="#b"/>
+    <linearGradient id="bw" x1="-492.57" y1="61.81" x2="-468.99" y2="85.39" xlink:href="#b"/>
+    <linearGradient id="bx" x1="-491.72" y1="62.48" x2="-467.99" y2="86.21" xlink:href="#b"/>
+    <linearGradient id="by" x1="-490.84" y1="63.1" x2="-466.94" y2="86.99" xlink:href="#b"/>
+    <linearGradient id="bz" x1="-489.91" y1="63.68" x2="-465.85" y2="87.74" xlink:href="#b"/>
+    <linearGradient id="ca" x1="-488.93" y1="64.22" x2="-464.72" y2="88.43" xlink:href="#b"/>
+    <linearGradient id="cb" x1="-487.93" y1="64.72" x2="-463.56" y2="89.09" xlink:href="#b"/>
+    <linearGradient id="cc" x1="-486.89" y1="65.17" x2="-462.36" y2="89.7" xlink:href="#b"/>
+    <linearGradient id="cd" x1="-485.82" y1="65.58" x2="-461.13" y2="90.26" xlink:href="#b"/>
+    <linearGradient id="ce" x1="-484.72" y1="65.93" x2="-459.88" y2="90.77" xlink:href="#b"/>
+    <linearGradient id="cf" x1="-483.6" y1="66.24" x2="-458.6" y2="91.24" xlink:href="#b"/>
+    <linearGradient id="cg" x1="-482.45" y1="66.5" x2="-457.3" y2="91.65" xlink:href="#b"/>
+    <linearGradient id="ch" x1="-481.29" y1="66.7" x2="-455.98" y2="92.01" xlink:href="#b"/>
+    <linearGradient id="ci" x1="-480.11" y1="66.85" x2="-454.64" y2="92.32" xlink:href="#b"/>
+    <linearGradient id="cj" x1="-478.92" y1="66.95" x2="-453.29" y2="92.58" xlink:href="#b"/>
+    <linearGradient id="ck" x1="-477.72" y1="66.99" x2="-451.94" y2="92.78" xlink:href="#b"/>
+    <linearGradient id="cl" x1="-476.52" y1="66.98" x2="-450.57" y2="92.92" xlink:href="#b"/>
+    <linearGradient id="cm" x1="-475.31" y1="66.91" x2="-449.21" y2="93.01" xlink:href="#b"/>
+    <linearGradient id="cn" x1="-474.1" y1="66.78" x2="-447.84" y2="93.04" xlink:href="#b"/>
+    <linearGradient id="co" x1="-472.89" y1="66.58" x2="-446.47" y2="93" xlink:href="#b"/>
+    <linearGradient id="cp" x1="-471.69" y1="66.33" x2="-445.12" y2="92.91" xlink:href="#b"/>
+    <linearGradient id="cq" x1="-470.5" y1="66.02" x2="-443.76" y2="92.75" xlink:href="#b"/>
+    <linearGradient id="cr" x1="-469.32" y1="65.64" x2="-442.43" y2="92.53" xlink:href="#b"/>
+    <linearGradient id="cs" x1="-468.15" y1="65.19" x2="-441.1" y2="92.24" xlink:href="#b"/>
+    <linearGradient id="ct" x1="-467" y1="64.68" x2="-439.79" y2="91.89" xlink:href="#b"/>
+    <linearGradient id="cu" x1="-465.87" y1="64.1" x2="-438.51" y2="91.47" xlink:href="#b"/>
+    <linearGradient id="cv" x1="-464.77" y1="63.45" x2="-437.25" y2="90.97" xlink:href="#b"/>
+    <linearGradient id="cw" x1="-463.69" y1="62.73" x2="-436.01" y2="90.41" xlink:href="#b"/>
+    <linearGradient id="cx" x1="-462.64" y1="61.94" x2="-434.8" y2="89.78" xlink:href="#b"/>
+    <linearGradient id="cy" x1="-461.63" y1="61.08" x2="-433.63" y2="89.08" xlink:href="#b"/>
+    <filter id="cz" data-name="drop-shadow-4" x="11.81" y="62.76" width="29.28" height="20.4" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1"/>
+      <feGaussianBlur result="da" stdDeviation="1"/>
+      <feFlood flood-color="#094756" flood-opacity=".75"/>
+      <feComposite in2="da" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g>
+    <circle cx="82.22" cy="15.94" r="8.53" fill="url(#b)"/>
+    <circle cx="81.01" cy="15.16" r="8.64" fill="url(#c)"/>
+    <circle cx="79.77" cy="14.46" r="8.75" fill="url(#d)"/>
+    <circle cx="78.53" cy="13.84" r="8.86" fill="url(#e)"/>
+    <circle cx="77.28" cy="13.3" r="8.97" fill="url(#f)"/>
+    <circle cx="76.03" cy="12.83" r="9.08" fill="url(#g)"/>
+    <circle cx="74.78" cy="12.44" r="9.2" fill="url(#h)"/>
+    <circle cx="73.52" cy="12.12" r="9.31" fill="url(#i)"/>
+    <circle cx="72.27" cy="11.87" r="9.42" fill="url(#j)"/>
+    <circle cx="71.03" cy="11.7" r="9.53" fill="url(#k)"/>
+    <circle cx="69.8" cy="11.59" r="9.64" fill="url(#l)"/>
+    <circle cx="68.58" cy="11.55" r="9.75" fill="url(#m)"/>
+    <circle cx="67.38" cy="11.58" r="9.86" fill="url(#n)"/>
+    <circle cx="66.2" cy="11.67" r="9.98" fill="url(#o)"/>
+    <circle cx="65.04" cy="11.83" r="10.09" fill="url(#p)"/>
+    <circle cx="63.91" cy="12.05" r="10.2" fill="url(#q)"/>
+    <circle cx="62.81" cy="12.33" r="10.31" fill="url(#r)"/>
+    <circle cx="61.74" cy="12.67" r="10.42" fill="url(#s)"/>
+    <circle cx="60.7" cy="13.07" r="10.53" fill="url(#t)"/>
+    <circle cx="59.7" cy="13.53" r="10.65" fill="url(#u)"/>
+    <circle cx="58.75" cy="14.04" r="10.76" fill="url(#v)"/>
+    <circle cx="57.83" cy="14.61" r="10.87" fill="url(#w)"/>
+    <circle cx="56.97" cy="15.23" r="10.98" fill="url(#x)"/>
+    <circle cx="56.15" cy="15.9" r="11.09" fill="url(#y)"/>
+    <circle cx="55.39" cy="16.63" r="11.2" fill="url(#z)"/>
+    <circle cx="54.69" cy="17.4" r="11.32" fill="url(#aa)"/>
+    <circle cx="54.04" cy="18.22" r="11.43" fill="url(#ab)"/>
+    <circle cx="53.46" cy="19.08" r="11.54" fill="url(#ac)"/>
+    <circle cx="52.94" cy="19.99" r="11.65" fill="url(#ad)"/>
+    <circle cx="52.49" cy="20.94" r="11.76" fill="url(#ae)"/>
+    <circle cx="52.12" cy="21.94" r="11.87" fill="url(#af)"/>
+    <circle cx="51.82" cy="22.98" r="11.99" fill="url(#ag)"/>
+    <circle cx="51.59" cy="24.05" r="12.1" fill="url(#ah)"/>
+    <circle cx="51.45" cy="25.17" r="12.21" fill="url(#ai)"/>
+    <circle cx="51.39" cy="26.32" r="12.32" fill="url(#aj)"/>
+    <circle cx="51.42" cy="27.5" r="12.43" fill="url(#ak)"/>
+    <circle cx="51.54" cy="28.72" r="12.54" fill="url(#al)"/>
+    <circle cx="51.75" cy="29.98" r="12.65" fill="url(#am)"/>
+    <circle cx="52.06" cy="31.26" r="12.77" fill="url(#an)"/>
+    <circle cx="52.46" cy="32.58" r="12.88" fill="url(#ao)"/>
+    <circle cx="52.97" cy="33.92" r="12.99" fill="url(#ap)"/>
+    <circle cx="53.59" cy="35.29" r="13.1" fill="url(#aq)"/>
+    <circle cx="54.31" cy="36.69" r="13.21" fill="url(#ar)"/>
+    <circle cx="55.15" cy="38.11" r="13.32" fill="url(#as)"/>
+    <circle cx="56.1" cy="39.55" r="13.44" fill="url(#at)"/>
+    <circle cx="57.17" cy="41.02" r="13.55" fill="url(#au)"/>
+    <circle cx="58.36" cy="42.5" r="13.66" fill="url(#av)"/>
+    <circle cx="59.67" cy="44.01" r="13.77" fill="url(#aw)"/>
+    <circle cx="61.03" cy="45.47" r="13.88" fill="url(#ax)"/>
+    <circle cx="62.21" cy="46.82" r="13.99" fill="url(#ay)"/>
+    <circle cx="63.28" cy="48.16" r="14.11" fill="url(#az)"/>
+    <circle cx="64.23" cy="49.49" r="14.22" fill="url(#ba)"/>
+    <circle cx="65.06" cy="50.82" r="14.33" fill="url(#bb)"/>
+    <circle cx="65.78" cy="52.12" r="14.44" fill="url(#bc)"/>
+    <circle cx="66.4" cy="53.42" r="14.55" fill="url(#bd)"/>
+    <circle cx="66.91" cy="54.69" r="14.66" fill="url(#be)"/>
+    <circle cx="67.32" cy="55.95" r="14.78" fill="url(#bf)"/>
+    <circle cx="67.62" cy="57.2" r="14.89" fill="url(#bg)"/>
+    <circle cx="67.84" cy="58.42" r="15" fill="url(#bh)"/>
+    <circle cx="67.95" cy="59.62" r="15.11" fill="url(#bi)"/>
+    <circle cx="67.98" cy="60.8" r="15.22" fill="url(#bj)"/>
+    <circle cx="67.92" cy="61.96" r="15.33" fill="url(#bk)"/>
+    <circle cx="67.78" cy="63.09" r="15.44" fill="url(#bl)"/>
+    <circle cx="67.55" cy="64.2" r="15.56" fill="url(#bm)"/>
+    <circle cx="67.25" cy="65.28" r="15.67" fill="url(#bn)"/>
+    <circle cx="66.87" cy="66.33" r="15.78" fill="url(#bo)"/>
+    <circle cx="66.42" cy="67.36" r="15.89" fill="url(#bp)"/>
+    <circle cx="65.9" cy="68.35" r="16" fill="url(#bq)"/>
+    <circle cx="65.31" cy="69.31" r="16.11" fill="url(#br)"/>
+    <circle cx="64.66" cy="70.24" r="16.23" fill="url(#bs)"/>
+    <circle cx="63.95" cy="71.14" r="16.34" fill="url(#bt)"/>
+    <circle cx="63.18" cy="71.99" r="16.45" fill="url(#bu)"/>
+    <circle cx="62.36" cy="72.82" r="16.56" fill="url(#bv)"/>
+    <circle cx="61.49" cy="73.6" r="16.67" fill="url(#bw)"/>
+    <circle cx="60.56" cy="74.34" r="16.78" fill="url(#bx)"/>
+    <circle cx="59.6" cy="75.05" r="16.9" fill="url(#by)"/>
+    <circle cx="58.59" cy="75.71" r="17.01" fill="url(#bz)"/>
+    <circle cx="57.54" cy="76.33" r="17.12" fill="url(#ca)"/>
+    <circle cx="56.45" cy="76.9" r="17.23" fill="url(#cb)"/>
+    <circle cx="55.33" cy="77.43" r="17.34" fill="url(#cc)"/>
+    <circle cx="54.18" cy="77.92" r="17.45" fill="url(#cd)"/>
+    <circle cx="53.01" cy="78.35" r="17.57" fill="url(#ce)"/>
+    <circle cx="51.8" cy="78.74" r="17.68" fill="url(#cf)"/>
+    <circle cx="50.58" cy="79.07" r="17.79" fill="url(#cg)"/>
+    <circle cx="49.34" cy="79.36" r="17.9" fill="url(#ch)"/>
+    <circle cx="48.08" cy="79.59" r="18.01" fill="url(#ci)"/>
+    <circle cx="46.82" cy="79.77" r="18.12" fill="url(#cj)"/>
+    <circle cx="45.54" cy="79.89" r="18.24" fill="url(#ck)"/>
+    <circle cx="44.25" cy="79.95" r="18.35" fill="url(#cl)"/>
+    <circle cx="42.97" cy="79.96" r="18.46" fill="url(#cm)"/>
+    <circle cx="41.68" cy="79.91" r="18.57" fill="url(#cn)"/>
+    <circle cx="40.39" cy="79.79" r="18.68" fill="url(#co)"/>
+    <circle cx="39.11" cy="79.62" r="18.79" fill="url(#cp)"/>
+    <circle cx="37.84" cy="79.38" r="18.9" fill="url(#cq)"/>
+    <circle cx="36.58" cy="79.08" r="19.02" fill="url(#cr)"/>
+    <circle cx="35.33" cy="78.72" r="19.13" fill="url(#cs)"/>
+    <circle cx="34.11" cy="78.28" r="19.24" fill="url(#ct)"/>
+    <circle cx="32.9" cy="77.78" r="19.35" fill="url(#cu)"/>
+    <circle cx="31.71" cy="77.21" r="19.46" fill="url(#cv)"/>
+    <circle cx="30.56" cy="76.57" r="19.57" fill="url(#cw)"/>
+    <circle cx="29.43" cy="75.86" r="19.69" fill="url(#cx)"/>
+    <circle cx="28.34" cy="75.08" r="19.8" fill="url(#cy)"/>
+  </g>
+  <g filter="url(#cz)">
+    <path d="M19.18,64.88c-.89,0-1.72.3-2.45.82.03,0,.06,0,.1,0,1.72,0,3.12,1.4,3.12,3.12s-1.4,3.12-3.12,3.12c-1.2,0-2.22-.68-2.74-1.67-.1.54-.15,1.09-.15,1.67,0,3.89,2.35,7.04,5.26,7.04s5.26-3.15,5.26-7.04-2.35-7.04-5.26-7.04Z" fill="#fff"/>
+    <path d="M16.82,71.91c1.72,0,3.12-1.4,3.12-3.12,0-1.72-1.4-3.12-3.12-3.12-.03,0-.06,0-.1,0-1.31.93-2.29,2.58-2.65,4.55.52.99,1.55,1.67,2.74,1.67Z"/>
+    <path d="M31.82,64.88c-.89,0-1.72.3-2.45.82.03,0,.06,0,.1,0,1.72,0,3.12,1.4,3.12,3.12s-1.4,3.12-3.12,3.12c-1.2,0-2.22-.68-2.74-1.67-.1.54-.15,1.09-.15,1.67,0,3.89,2.35,7.04,5.26,7.04,2.9,0,5.26-3.15,5.26-7.04,0-3.89-2.35-7.04-5.26-7.04Z" fill="#fff"/>
+    <path d="M29.46,71.91c1.72,0,3.12-1.4,3.12-3.12s-1.4-3.12-3.12-3.12c-.03,0-.06,0-.1,0-1.31.93-2.29,2.58-2.65,4.55.52.99,1.55,1.67,2.74,1.67Z"/>
+  </g>
+</svg>
