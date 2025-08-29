@@ -50,7 +50,7 @@ async function loadNetwork() {
 	const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
 	const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
 
-	const fileName = `../../data/network_generated/graph_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.json`;
+	const fileName = `data/network_generated/graph_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.json`;
 	console.log("Loading network:", fileName);
 
 	try {
@@ -149,7 +149,7 @@ function drawNetwork(graph) {
 	nodeContent
 		.append("image")
 		.attr("xlink:href", (d) =>
-			d.minority === 1 ? "../../images/boba.png" : "../../images/tika.png"
+			d.minority === 1 ? "images/boba.png" : "images/tika.png"
 		)
 		.attr("width", 50)
 		.attr("height", 50)
@@ -159,7 +159,7 @@ function drawNetwork(graph) {
 	nodeContent
 		.filter((d) => d.isTop10)
 		.append("image")
-		.attr("xlink:href", "../../images/crown.svg")
+		.attr("xlink:href", "images/crown.svg")
 		.attr("width", 60)
 		.attr("height", 60)
 		.attr("x", -30)
@@ -242,8 +242,8 @@ function playMusic() {
   const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
 
 
-  const audioFile = `../../data/music_generated/version_a/Sound_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.mp3`;
-//   const audioFile = `../../data/music_generated/version_b/sample-9s.mp3`;
+  const audioFile = `data/music_generated/version_a/Sound_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.mp3`;
+//   const audioFile = `data/music_generated/version_b/sample-9s.mp3`;
 
   console.log("Playing audio:", audioFile);
 
@@ -274,7 +274,7 @@ function loadGraph() {
   const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
   const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
 
-  const imgSrc = `../../data/plots_generated/Heatmap_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.png`;
+  const imgSrc = `data/plots_generated/Heatmap_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.png`;
   console.log("Loading graph generated:", imgSrc);
 
 
@@ -384,7 +384,7 @@ function updateTop10List(nodes) {
 	// Add icons to minority row
 	minorityNodes.forEach((d) => {
 		const img = document.createElement("img");
-		img.src = "../../images/boba.png";
+		img.src = "images/boba.png";
 		img.width = 20;
 		img.height = 20;
 		img.title = `Node ${d.id}`;
@@ -394,7 +394,7 @@ function updateTop10List(nodes) {
 	// Add icons to majority row
 	majorityNodes.forEach((d) => {
 		const img = document.createElement("img");
-		img.src = "../../images/tika.png";
+		img.src = "images/tika.png";
 		img.width = 20;
 		img.height = 20;
 		img.title = `Node ${d.id}`;
