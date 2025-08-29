@@ -50,16 +50,20 @@ document.addEventListener("DOMContentLoaded", () => {
  * @returns {Promise<Object|null>} graph object containing nodes and links
  */
 async function loadNetwork() {
-
 	// --- Grab slider values ---
-	// Note: The 'value' attribute is now set by the custom slider logic above
-	// const sliderRatio = document.getElementById("sliderRatio").value;
-	// const sliderH1 = document.getElementById("sliderHomophilyMajority").value;
-	// const sliderH2 = document.getElementById("sliderHomophilyMinority").value;
-
-  const sliderRatio = Math.round(parseFloat(document.getElementById("sliderRatioValue").textContent) * 10);
-  const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
-  const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
+	const sliderRatio = Math.round(
+		parseFloat(document.getElementById("sliderRatioValue").textContent) * 10
+	);
+	const sliderH1 = Math.round(
+		parseFloat(
+			document.getElementById("sliderHomophilyMajorityValue").textContent
+		) * 10
+	);
+	const sliderH2 = Math.round(
+		parseFloat(
+			document.getElementById("sliderHomophilyMinorityValue").textContent
+		) * 10
+	);
 
 	console.log("Slider values:", sliderRatio, sliderH1, sliderH2);
 
@@ -93,32 +97,41 @@ function drawNetwork(graph) {
 
 	d3.select("svg").selectAll("*").remove();
 	const svg = d3.select("svg");
-	const width = +svg.attr("width") || window.innerWidth;
-	const height = +svg.attr("height") || window.innerHeight;
+	const width = +svg.node().getBoundingClientRect().width;
+	const height = +svg.node().getBoundingClientRect().height;
 	const container = svg.append("g");
 
-	const CONNECTED_OPACITY = 1.0;
-	const UNCONNECTED_OPACITY = 0.3;
+	const TOP10_OPACITY = 1.0;
+	const OTHER_OPACITY = 0.7;
+	const NODE_RADIUS = 20;
 
-	const linkedNodeIds = new Set();
-	graph.links.forEach((link) => {
-		linkedNodeIds.add(link.source.id || link.source);
-		linkedNodeIds.add(link.target.id || link.target);
-	});
-	graph.nodes.forEach((node) => {
-		node.isConnected = linkedNodeIds.has(node.id);
-	});
+	container
+		.append("defs")
+		.append("marker")
+		.attr("id", "arrowhead")
+		.attr("viewBox", "-0 -5 10 10")
+		.attr("refX", 10)
+		.attr("refY", 0)
+		.attr("orient", "auto")
+		.attr("markerWidth", 8)
+		.attr("markerHeight", 8)
+		.attr("xoverflow", "visible")
+		.append("svg:path")
+		.attr("d", "M 0,-5 L 10 ,0 L 0,5")
+		.attr("fill", "#999")
+		.style("stroke", "none");
 
-	// --- Simulation ---
 	const simulation = d3
 		.forceSimulation(graph.nodes)
-		.force("link", d3.forceLink(graph.links).id((d) => d.id).distance(100))
-		.force("charge", d3.forceManyBody().strength(-200))
-		.force("center", d3.forceCenter(width / 2, height / 2))
-		.force("x", d3.forceX(width / 2).strength(0.1))
-		.force("y", d3.forceY(height / 2).strength(0.1));
+		.force(
+			"link",
+			d3.forceLink(graph.links).id((d) => d.id).distance(150)
+		)
+		.force("charge", d3.forceManyBody().strength(-400))
+		.force("center", d3.forceCenter(width / 2, height / 2).strength(0.01))
+		.force("x", d3.forceX(width / 2).strength(0.05))
+		.force("y", d3.forceY(height / 2).strength(0.05));
 
-	// --- Links ---
 	const link = container
 		.append("g")
 		.attr("class", "links")
@@ -127,10 +140,10 @@ function drawNetwork(graph) {
 		.enter()
 		.append("line")
 		.attr("stroke", "#999")
-		.attr("stroke-opacity", 0.2)
-		.attr("stroke-width", 2);
+		.attr("stroke-opacity", 0.5)
+		.attr("stroke-width", 0.4)
+		.attr("marker-end", "url(#arrowhead)");
 
-	// --- Nodes (outer group for dragging) ---
 	const node = container
 		.append("g")
 		.attr("class", "nodes")
@@ -138,9 +151,7 @@ function drawNetwork(graph) {
 		.data(graph.nodes)
 		.enter()
 		.append("g")
-		.attr("opacity", (d) =>
-			d.isConnected ? CONNECTED_OPACITY : UNCONNECTED_OPACITY
-		)
+		.attr("opacity", (d) => (d.isTop10 ? TOP10_OPACITY : OTHER_OPACITY))
 		.call(
 			d3
 				.drag()
@@ -149,12 +160,10 @@ function drawNetwork(graph) {
 				.on("end", dragended)
 		);
 
-	// --- Inner group for visuals ---
 	const nodeContent = node
 		.append("g")
-		.attr("class", (d) => (d.isTop10 ? "animate-wobble" : "")); // Using Tailwind's class
+		.attr("class", (d) => (d.isTop10 ? "animate-wobble" : ""));
 
-	// Node image
 	nodeContent
 		.append("image")
 		.attr("xlink:href", (d) =>
@@ -165,7 +174,6 @@ function drawNetwork(graph) {
 		.attr("x", -25)
 		.attr("y", -25);
 
-	// Crown for top 10 nodes
 	nodeContent
 		.filter((d) => d.isTop10)
 		.append("image")
@@ -175,15 +183,55 @@ function drawNetwork(graph) {
 		.attr("x", -30)
 		.attr("y", -40);
 
+	// --- Zoom ---
+	// MODIFICATION: Define the zoom behavior here so it's available for the "end" event
+	const zoom = d3.zoom().scaleExtent([0.1, 8]).on("zoom", zoomed);
+	svg.call(zoom);
+
+	function zoomed(event) {
+		container.attr("transform", event.transform);
+	}
+
 	// --- Tick ---
 	simulation.on("tick", () => {
-		link
-			.attr("x1", (d) => d.source.x)
-			.attr("y1", (d) => d.source.y)
-			.attr("x2", (d) => d.target.x)
-			.attr("y2", (d) => d.target.y);
+		link.each(function (d) {
+			const dx = d.target.x - d.source.x;
+			const dy = d.target.y - d.source.y;
+			const dist = Math.sqrt(dx * dx + dy * dy);
+			if (dist === 0) return;
+
+			const newTargetX = d.target.x - (dx / dist) * NODE_RADIUS;
+			const newTargetY = d.target.y - (dy / dist) * NODE_RADIUS;
+
+			d3.select(this)
+				.attr("x1", d.source.x)
+				.attr("y1", d.source.y)
+				.attr("x2", newTargetX)
+				.attr("y2", newTargetY);
+		});
 
 		node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+	});
+
+	// MODIFICATION: Add an "end" event listener to center the graph after the simulation finishes
+	simulation.on("end", () => {
+		const bbox = container.node().getBBox();
+		const padding = 0.95; // 5% padding
+
+		const scale = Math.min(
+			(width / bbox.width) * padding,
+			(height / bbox.height) * padding
+		);
+
+		const tx = (width - bbox.width * scale) / 2 - bbox.x * scale;
+		const ty = (height - bbox.height * scale) / 2 - bbox.y * scale;
+
+		const transform = d3.zoomIdentity.translate(tx, ty).scale(scale);
+
+		svg
+			.transition()
+			.duration(500) // Smooth transition to the centered view
+			.call(zoom.transform, transform);
 	});
 
 	// --- Drag functions ---
@@ -201,12 +249,6 @@ function drawNetwork(graph) {
 		d.fx = null;
 		d.fy = null;
 	}
-
-	// --- Zoom ---
-	function zoomed(event) {
-		container.attr("transform", event.transform);
-	}
-	svg.call(d3.zoom().scaleExtent([0.1, 8]).on("zoom", zoomed));
 }
 
 // -------------------------
@@ -256,8 +298,8 @@ async function updateNetwork() {
 // --- Connect button to update ---
 // This replaces the `onclick` attribute in the HTML for better practice
 document
-  .querySelector('button[onclick="updateNetwork()"]')
-  .addEventListener("click", (event) => {
-    event.preventDefault(); // <-- prevent page reload
-    updateNetwork();
-  });
+	.querySelector('button[onclick="updateNetwork()"]')
+	.addEventListener("click", (event) => {
+		event.preventDefault(); // <-- prevent page reload
+		updateNetwork();
+	});
