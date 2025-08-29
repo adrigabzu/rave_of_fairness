@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>A Symphony of Fairness</title>
+	<title>Rave of Fairness</title>
 
 	<!-- D3.js Libraries -->
 	<script src="https://d3js.org/d3.v7.min.js"></script>
@@ -52,22 +52,29 @@
 		};
 	</script>
 </head>
-
-<body class="font-sans bg-gray-900 text-gray-300 flex flex-col min-h-screen">
+<style>
+	body {
+		background-image: url('../../images/Background.svg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+</style>
+<body class="font-sans bg-gray-900 text-white flex flex-col min-h-screen">
 	<!-- Main Content Area -->
 	<div class="grid grid-cols-4 flex-1 w-full">
 		<!-- Left Panel (1/4) - Text -->
-		<aside id="left-panel" class="col-span-1 bg-gray-800 p-6 flex flex-col space-y-4 border-r border-gray-700">
+		<aside id="left-panel" class="col-span-1 bg-transparent p-6 flex flex-col space-y-4 border-r border-gray-700">
 			<h1 class="font-title text-4xl font-bold text-blue-400">
-				Symphony of Fairness
+				Rave of Fairness
 			</h1>
-			<p class="text-base mt-1 text-gray-400">
+			<p class="text-base mt-1 text-white">
 				The spectrum of representation for ranked algorithms in a networked social scene with unequal
 				demographics (anytime there is a majority and a minority)
 			</p>
 			<div class="pt-4">
-				<details open class="text-sm text-gray-500">
-					<summary class="font-semibold text-gray-400 mb-2 cursor-pointer">
+				<details open class="text-sm text-gray-300">
+					<summary class="font-semibold text-white mb-2 cursor-pointer">
 						A handful of bobas walk into a bar…
 					</summary>
 					<div class="pl-2">
@@ -77,7 +84,14 @@
 							inclusively or exclusively the bobas and tikas are connecting with each other.
 						</p>
 						<p class="mb-2">
-							The proportion of Bobas (minority group) and Tikas (majority) who the emcee robot is highlighting is
+							The proportion of
+							<span style="font-weight:bold; color:#24E5EA;">
+								Bobas (minority group)
+							</span></span>
+							and 
+							<span style="font-weight:bold; color:#FF7300;">
+								Tikas (majority) 
+							</span>who the emcee robot is highlighting is
 							not always equal to their demographics in the group. The proportion of the 10 individuals that the
 							emcee highlights can either underrepresent, overrepresent, or equally (fairly) represent the ratio
 							of bobas and tikas in the bar. The proportion of bobas the emcee (algorithm) highlights is not only
@@ -98,32 +112,44 @@
 
 		<!-- Right Panel (1/4) - Controls -->
 		<aside id="right-panel"
-			class="col-span-1 bg-gray-800 border-l border-gray-700 p-6 overflow-y-auto flex flex-col space-y-8">
+			class="col-span-1 bg-transparent border-l border-gray-700 p-6 overflow-y-auto flex flex-col space-y-8">
 			<!-- Parameter Selection Section -->
-			<div id="parameter-selection" class="flex flex-col items-center">
-				<!-- <h2 class="text-lg font-semibold mb-4 text-blue-400">
-					Parameter Selection
-				</h2> -->
+			<div id="parameter-selection" class="flex flex-col items-start w-full">
 				<div class="w-full space-y-6">
-					<div class="slider-group flex flex-col items-center">
-						<label for="sliderRatio" class="text-sm mb-1">Proportion Minority (fm)</label>
-						<input type="range" id="sliderRatio" min="0" max="1" step="1" value="0"
-							class="w-48 h-1.5 bg-gray-600 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-500" />
-						<span id="sliderRatioValue" class="text-sm text-blue-400 font-semibold mt-1">0.1</span>
+					<div class="slider-group flex flex-col items-start w-full">
+						<label for="sliderRatio" class="text-sm mb-1 text-left w-full">CROWD MIX</label>
+						<span class="text-xs text-gray-400 mb-2 text-left w-full">
+							the ratio of minority (bobas) to majority (tikas) individuals
+						</span>
+						<div class="w-full flex justify-center">
+							<input type="range" id="sliderRatio" min="0" max="1" step="1" value="0"
+								class="w-48 h-1.5 bg-gray-600 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-500" />
+						</div>
+						<span id="sliderRatioValue" class="text-sm text-blue-400 font-semibold mt-1 w-full text-center">0.1</span>
 					</div>
-					<div class="slider-group flex flex-col items-center">
-						<label for="sliderHomophilyMajority" class="text-sm mb-1">Homophily Majority (h_MM)</label>
-						<input type="range" id="sliderHomophilyMajority" min="0" max="2" step="1" value="1"
-							class="w-48 h-1.5 bg-gray-600 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-500" />
+					<div class="slider-group flex flex-col items-start w-full">
+						<label for="sliderHomophilyMajority" class="text-sm mb-1 text-left w-full">TIKA LOVE</label>
+						<span class="text-xs text-gray-400 mb-2 text-left w-full">
+							how inclusive or exclusive the majority (tikas) build their social connections
+						</span>
+						<div class="w-full flex justify-center">
+							<input type="range" id="sliderHomophilyMajority" min="0" max="2" step="1" value="1"
+								class="w-48 h-1.5 bg-gray-600 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-500" />
+						</div>
 						<span id="sliderHomophilyMajorityValue"
-							class="text-sm text-blue-400 font-semibold mt-1">0.5</span>
+							class="text-sm text-blue-400 font-semibold mt-1 w-full text-center">0.5</span>
 					</div>
-					<div class="slider-group flex flex-col items-center">
-						<label for="sliderHomophilyMinority" class="text-sm mb-1">Homophily Minority (h_mm)</label>
-						<input type="range" id="sliderHomophilyMinority" min="0" max="2" step="1" value="1"
-							class="w-48 h-1.5 bg-gray-600 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-500" />
+					<div class="slider-group flex flex-col items-start w-full">
+						<label for="sliderHomophilyMinority" class="text-sm mb-1 text-left w-full">BOBA LOVE</label>
+						<span class="text-xs text-gray-400 mb-2 text-left w-full">
+						how inclusive or exclusive the minority (bobas) build their social connections
+						</span>
+						<div class="w-full flex justify-center">
+							<input type="range" id="sliderHomophilyMinority" min="0" max="2" step="1" value="1"
+								class="w-48 h-1.5 bg-gray-600 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-500" />
+						</div>
 						<span id="sliderHomophilyMinorityValue"
-							class="text-sm text-blue-400 font-semibold mt-1">0.5</span>
+							class="text-sm text-blue-400 font-semibold mt-1 w-full text-center">0.5</span>
 					</div>
 				</div>
 				<button onclick="updateNetwork()"
