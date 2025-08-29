@@ -210,6 +210,31 @@ function drawNetwork(graph) {
 }
 
 // -------------------------
+// Play audio based on slider values
+// -------------------------
+function playMusic() {
+  const sliderRatio = Math.round(parseFloat(document.getElementById("sliderRatioValue").textContent) * 10);
+  const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
+  const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
+
+  const audioFile = `../../data/music_generated/sound_${sliderRatio}_${sliderH1}_${sliderH2}.mp3`;
+
+  console.log("Playing audio:", audioFile);
+
+  // Stop any currently playing audio before starting a new one
+  if (window.currentAudio) {
+    window.currentAudio.pause();
+    window.currentAudio.currentTime = 0;
+  }
+
+  const audio = new Audio(audioFile);
+  audio.play().catch(err => console.error("Audio playback failed:", err));
+  
+  // Keep reference to stop later
+  window.currentAudio = audio;
+}
+
+// -------------------------
 // Update top 10 ranked nodes list
 // -------------------------
 function updateTop10List(nodes) {
@@ -244,10 +269,13 @@ function updateTop10List(nodes) {
 // Main update function: load & draw network
 // -------------------------
 async function updateNetwork() {
-	const graph = await loadNetwork();
-	if (!graph) return;
-	updateTop10List(graph.nodes);
-	drawNetwork(graph);
+  const graph = await loadNetwork();
+  if (!graph) return;
+  updateTop10List(graph.nodes);
+  drawNetwork(graph);
+
+  // 🔊 Play the corresponding audio
+  playMusic();
 }
 
 // --- Initial load ---
@@ -261,3 +289,4 @@ document
     event.preventDefault(); // <-- prevent page reload
     updateNetwork();
   });
+
