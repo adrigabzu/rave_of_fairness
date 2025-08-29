@@ -63,7 +63,7 @@ async function loadNetwork() {
 
 	console.log("Slider values:", sliderRatio, sliderH1, sliderH2);
 
-	const fileName = `../data/network_generated/graph_${sliderRatio}_${sliderH1}_${sliderH2}.json`;
+	const fileName = `../../data/network_generated/graph_${sliderRatio}_${sliderH1}_${sliderH2}.json`;
 
 	console.log("Loading:", fileName);
 
@@ -158,7 +158,7 @@ function drawNetwork(graph) {
 	nodeContent
 		.append("image")
 		.attr("xlink:href", (d) =>
-			d.minority === 1 ? "../images/boba.svg" : "../images/tika.svg"
+			d.minority === 1 ? "../../images/boba.svg" : "../../images/tika.svg"
 		)
 		.attr("width", 50)
 		.attr("height", 50)
@@ -169,7 +169,7 @@ function drawNetwork(graph) {
 	nodeContent
 		.filter((d) => d.isTop10)
 		.append("image")
-		.attr("xlink:href", "../images/crown.svg")
+		.attr("xlink:href", "../../images/crown.svg")
 		.attr("width", 60)
 		.attr("height", 60)
 		.attr("x", -30)
@@ -227,7 +227,7 @@ function updateTop10List(nodes) {
 
 		const img = document.createElement("img");
 		img.src =
-			d.minority === 1 ? "../images/boba.svg" : "../images/tika.svg";
+			d.minority === 1 ? "../../images/boba.svg" : "../../images/tika.svg";
 		img.width = 20;
 		img.height = 20;
 
