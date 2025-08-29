@@ -253,7 +253,9 @@ function playMusic() {
   }
 
   const audio = new Audio(audioFile);
+  audio.loop = true; // 🔁 loop forever
   audio.play().catch(err => console.error("Audio playback failed:", err));
+ 
   window.currentAudio = audio;
 }
 
