@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Define the allowed values for each slider
 	const ratioValues = [0.1, 0.3];
 	const homophilyValues = [0.2, 0.5, 0.8];
+  	const soundVersions = ["version_a", "version_b"];
 
 	// Helper function to set up a slider with discrete steps
 	const setupSlider = (sliderId, displayId, valueMap) => {
@@ -27,18 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		updateDisplay();
 	};
 
-	// Set up all three sliders
+	// --- Setup all sliders ---
 	setupSlider("sliderRatio", "sliderRatioValue", ratioValues);
-	setupSlider(
-		"sliderHomophilyMajority",
-		"sliderHomophilyMajorityValue",
-		homophilyValues
-	);
-	setupSlider(
-		"sliderHomophilyMinority",
-		"sliderHomophilyMinorityValue",
-		homophilyValues
-	);
+	setupSlider("sliderHomophilyMajority", "sliderHomophilyMajorityValue", homophilyValues);
+	setupSlider("sliderHomophilyMinority", "sliderHomophilyMinorityValue", homophilyValues);
+	setupSlider("sliderSoundVersion", "sliderSoundVersionValue", soundVersions);
+
 });
 
 // -------------------------
@@ -51,25 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 async function loadNetwork() {
 	// --- Grab slider values ---
-	const sliderRatio = Math.round(
-		parseFloat(document.getElementById("sliderRatioValue").textContent) * 10
-	);
-	const sliderH1 = Math.round(
-		parseFloat(
-			document.getElementById("sliderHomophilyMajorityValue").textContent
-		) * 10
-	);
-	const sliderH2 = Math.round(
-		parseFloat(
-			document.getElementById("sliderHomophilyMinorityValue").textContent
-		) * 10
-	);
+	const sliderRatio = Math.round(parseFloat(document.getElementById("sliderRatioValue").textContent) * 10);
+	const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
+	const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
 
-	console.log("Slider values:", sliderRatio, sliderH1, sliderH2);
-
-	const fileName = `../../data/network_generated/graph_${sliderRatio}_${sliderH1}_${sliderH2}.json`;
-
-	console.log("Loading:", fileName);
+	const fileName = `../../data/network_generated/graph_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.json`;
+	console.log("Loading network:", fileName);
 
 	try {
 		const graph = await d3.json(fileName);
@@ -258,12 +240,12 @@ function playMusic() {
   const sliderRatio = Math.round(parseFloat(document.getElementById("sliderRatioValue").textContent) * 10);
   const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
   const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
+  const version = document.getElementById("sliderSoundVersionValue").textContent; // version_a or version_b
 
-  const audioFile = `../../data/music_generated/sound_${sliderRatio}_${sliderH1}_${sliderH2}.mp3`;
+  const audioFile = `../../data/music_generated/${version}/sound_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.mp3`;
 
   console.log("Playing audio:", audioFile);
 
-  // Stop any currently playing audio before starting a new one
   if (window.currentAudio) {
     window.currentAudio.pause();
     window.currentAudio.currentTime = 0;
@@ -271,8 +253,6 @@ function playMusic() {
 
   const audio = new Audio(audioFile);
   audio.play().catch(err => console.error("Audio playback failed:", err));
-  
-  // Keep reference to stop later
   window.currentAudio = audio;
 }
 

@@ -3,7 +3,6 @@ import argparse
 import json
 import os
 
-from symphony_of_fairness.src.convert_networks import OUTPUT_DIR
 
 # --- Fixed paths ---
 PARAMS_FILE = "data/processed_data/parameters.csv"
@@ -87,7 +86,7 @@ def batch_generate_graphs(nodes_file, edges_file, params_file, output_dir):
             fm = int(float(row["fm"]) * 10)
             h_MM = int(float(row["h_MM"]) * 10)
             h_mm = int(float(row["h_mm"]) * 10)
-            filename = f"graph_{fm}_{h_MM}_{h_mm}.json"
+            filename = f"graph_fm{fm}_hMM{h_MM}_hmm{h_mm}.json"  # Heatmap_fm0.1_hMM0.2_hmm0.5.jpg
 
             output_path = os.path.join(output_dir, filename)
             with open(output_path, "w") as out:
@@ -125,9 +124,10 @@ def main():
             fm = int(float(row["fm"]) * 10)
             h_MM = int(float(row["h_MM"]) * 10)
             h_mm = int(float(row["h_mm"]) * 10)
-            filename = f"graph_{fm}_{h_MM}_{h_mm}.json"
+            filename = f"graph_fm{fm}_hMM{h_MM}_hmm{h_mm}.json"  # Heatmap_fm0.1_hMM0.2_hmm0.5.jpg
+
         else:
-            filename = f"graph_{args.id}.json"
+            filename = f"graph_fm{fm}_hMM{h_MM}_hmm{h_mm}.json"  # Heatmap_fm0.1_hMM0.2_hmm0.5.jpg
 
         output_path = os.path.join(args.output_dir, filename)
         os.makedirs(args.output_dir, exist_ok=True)

@@ -72,16 +72,23 @@
 					</summary>
 					<div class="pl-2">
 						<p class="mb-2">
-							They want to join the tikas, who make up the majority of partiers on the dance floor. Throughout the
-							night, an emcee robot—using a ranking algorithm—is always highlighting ten individuals based on how
+							They want to join the tikas, who make up the majority of partiers on the dance floor.
+							Throughout the
+							night, an emcee robot—using a ranking algorithm—is always highlighting ten individuals based
+							on how
 							inclusively or exclusively the bobas and tikas are connecting with each other.
 						</p>
 						<p class="mb-2">
-							The proportion of Bobas (minority group) and Tikas (majority) who the emcee robot is highlighting is
-							not always equal to their demographics in the group. The proportion of the 10 individuals that the
-							emcee highlights can either underrepresent, overrepresent, or equally (fairly) represent the ratio
-							of bobas and tikas in the bar. The proportion of bobas the emcee (algorithm) highlights is not only
-							based on the ratio of bobas to tikas, but also on how well the bobas and tikas connect to their own
+							The proportion of Bobas (minority group) and Tikas (majority) who the emcee robot is
+							highlighting is
+							not always equal to their demographics in the group. The proportion of the 10 individuals
+							that the
+							emcee highlights can either underrepresent, overrepresent, or equally (fairly) represent the
+							ratio
+							of bobas and tikas in the bar. The proportion of bobas the emcee (algorithm) highlights is
+							not only
+							based on the ratio of bobas to tikas, but also on how well the bobas and tikas connect to
+							their own
 							group and to others.
 						</p>
 					</div>
@@ -125,7 +132,18 @@
 						<span id="sliderHomophilyMinorityValue"
 							class="text-sm text-blue-400 font-semibold mt-1">0.5</span>
 					</div>
+					<div class="slider-group flex flex-col items-center">
+						<label for="sliderSoundVersion" class="text-sm mb-1">Sound Version</label>
+						<input type="range" id="sliderSoundVersion" min="0" max="1" step="1" value="0" class="w-48 h-1.5 bg-gray-600 rounded-full appearance-none cursor-pointer
+					    [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4
+					    [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-green-500
+					    [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full
+					    [&::-moz-range-thumb]:bg-green-500" />
+						<span id="sliderSoundVersionValue"
+							class="text-sm text-green-400 font-semibold mt-1">version_a</span>
+					</div>
 				</div>
+
 				<button onclick="updateNetwork()"
 					class="mt-6 w-full py-2 px-4 text-sm bg-blue-600 text-white rounded-md cursor-pointer hover:bg-blue-500 transition-colors">
 					Load Network
