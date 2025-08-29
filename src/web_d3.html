@@ -1,68 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>A Symphony of Fairness</title>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A Symphony of Fairness</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://unpkg.com/d3-simple-slider@1.7.4/dist/d3-simple-slider.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap"
-        rel="stylesheet" />
+		<!-- D3.js Libraries -->
+		<script src="https://d3js.org/d3.v7.min.js"></script>
+		<script src="https://unpkg.com/d3-simple-slider@1.7.4/dist/d3-simple-slider.min.js"></script>
 
-</head>
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap"
+			rel="stylesheet"
+		/>
 
-<body>
-    <div class="header-row">
-        <header>
-            <h1>A Symphony of Fairness</h1>
-            <p>Adjust the parameters to compose a new arrangement of the network.</p>
-        </header>
-    </div>
+		<!-- Link to your generated stylesheet -->
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body
+		class="font-sans bg-white text-gray-800 flex flex-col min-h-screen"
+	>
+		<!-- Header -->
+		<header class="text-center py-4 border-b">
+			<h1 class="font-serif text-4xl font-bold text-primary">
+				A Symphony of Fairness
+			</h1>
+			<p class="text-base mt-1 text-gray-600">
+				Adjust the parameters to compose a new arrangement of the network.
+			</p>
+		</header>
 
-    <div class="main-row">
-        <!-- Side Panel -->
-        <div id="side-panel">
-            <div class="panel-section" id="parameter-selection">
-                <h2>Parameter Selection</h2>
-                <div class="slider-group">
-                    <label for="sliderRatio">Proportion Minority (fm)</label>
-                    <input type="range" id="sliderRatio" min="0" max="0.5" step="0.05" value="0.1">
-                    <span id="sliderRatioValue">0.1</span>
-                </div>
-                <div class="slider-group">
-                    <label for="sliderHomophilyMajority">Homophily Majority (h_MM)</label>
-                    <input type="range" id="sliderHomophilyMajority" min="1" max="10" step="1" value="1">
-                    <span id="sliderHomophilyMajorityValue">1</span>
-                </div>
-                <div class="slider-group">
-                    <label for="sliderHomophilyMinority">Homophily Minority (h_mm)</label>
-                    <input type="range" id="sliderHomophilyMinority" min="1" max="10" step="1" value="1">
-                    <span id="sliderHomophilyMinorityValue">1</span>
-                </div>
-                <button onclick="updateNetwork()">Load Network</button>
-            </div>
-
-            <div class="panel-section" id="top10-nodes">
-                <h2>Top 10 Ranked Nodes</h2>
-                <ul id="top10-list"></ul>
-            </div>
-        </div>
-
-        <!-- Graph -->
-        <div id="main-content">
-            <div id="graph-container">
-                <svg></svg>
-            </div>
-        </div>
-    </div>
-
-    <script src="network.js"></script>
-</body>
-
-
-</html>
+		<!-- Main Content Area -->
+		<div class="flex flex-1 w-full overflow-hidden">
+			<!-- Side Panel -->
+			<aside
+				id="side-panel"
+				class="w-[280px] flex-shrink-0 bg-gray-50 border-r p-6 overflow-y-auto flex flex-col space-y-8"
+			>
+				<!-- Parameter Selection Section -->
+				<div id="parameter-selection" class="flex flex-col items-center">
+					<h2 class="text-lg font-semibold mb-4 text-primary">
+						Parameter Selection
+					</h2>
+					<div class="w-full space-y-6">
+						<div class="slider-group flex flex-col items-center">
+							<label for="sliderRatio" class="text-sm mb-1"
+								>Proportion Minority (fm)</label
+							>
+							<input
+								type="range"
+								id="sliderRatio"
+								min="0"
+								max="0.5"
+								step="0.05"
+								value="0.1"
+								class="w-48 h-1.5 bg-gray-300 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary"
+							/>
+							<span
+								id="sliderRatioValue"
+								class="text-sm text-primary font-semibold mt-1"
+								>0.1</span
+							>
+						</div>
+						<div class="slider-group flex flex-col items-center">
+							<label
+								for="sliderHomophilyMajority"
+								class="text-sm mb-1"
+								>Homophily Majority (h_MM)</label
+							>
+							<input
+								type="range"
+								id="sliderHomophilyMajority"
+								min="1"
+								max="10"
+								step="1"
+								value="1"
+								class="w-48 h-1.5 bg-gray-300 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full
