@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
  * @returns {Promise<Object|null>} graph object containing nodes and links
  */
 async function loadNetwork() {
+
 	// --- Grab slider values ---
 	// Note: The 'value' attribute is now set by the custom slider logic above
 	// const sliderRatio = document.getElementById("sliderRatio").value;
