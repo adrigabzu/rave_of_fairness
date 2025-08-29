@@ -3,10 +3,13 @@ import argparse
 import json
 import os
 
+from symphony_of_fairness.src.convert_networks import OUTPUT_DIR
+
 # --- Fixed paths ---
 PARAMS_FILE = "data/processed_data/parameters.csv"
 NODES_FILE = "data/raw_data/nodes_pg.csv"
 EDGES_FILE = "data/raw_data/edges.csv"
+OUTPUT_DIR = "data/network_generated"
 
 
 def convert_to_graph_first_draft(nodes_file, edges_file, network_id):
@@ -99,7 +102,7 @@ def main():
     parser.add_argument("--id", help="Single network id (optional)")
     parser.add_argument(
         "--output_dir",
-        default="data/network_generated",
+        default=OUTPUT_DIR,
         help="Where to save generated JSON files",
     )
     args = parser.parse_args()
