@@ -275,6 +275,7 @@ function loadGraph() {
   const imgSrc = `../../data/plots_generated/Heatmap_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.png`;
   console.log("Loading graph generated:", imgSrc);
 
+
   // Create overlay
   const overlay = document.createElement("div");
   overlay.style.position = "fixed";

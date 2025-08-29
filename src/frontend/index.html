@@ -54,7 +54,7 @@
 </head>
 <style>
 	body {
-		background-image: url('../../images/Background.svg');
+		background-image: url("../../images/Background.svg");
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center center;
@@ -66,48 +66,50 @@
 	<div class="grid grid-cols-4 flex-1 w-full">
 		<!-- Left Panel (1/4) - Text -->
 		<aside id="left-panel" class="col-span-1 bg-transparent p-6 flex flex-col space-y-4 border-r border-gray-700">
-			<h1 class="font-title text-4xl font-bold" style="color: #ffb500;">
+			<h1 class="font-title text-4xl font-bold" style="color: #ffb500">
 				Rave of Fairness
 			</h1>
-			<p class="text-base mt-1" style="color: #ffb500;">
-				The spectrum of representation for ranked algorithms in a networked social scene with unequal
-				demographics (anytime there is a majority and a minority)
+			<p class="text-base mt-1" style="color: #ffb500">
+				The spectrum of representation for ranked algorithms in a networked
+				social scene with unequal demographics (anytime there is a majority
+				and a minority)
 			</p>
-			<div class="pt-2">
-				<p class="text-base text-gray-300">
-					<span class="pl-2 block">
-						<p class="text-xl">
-							Some bobas walk into a bar…
-						</p>
-						<p class="text-m text-gray-100">
-							They want to join the tikas, who make up the majority of partiers on the dance floor.
-							Throughout the
-							night, an emcee robot—using a ranking algorithm—is always highlighting ten individuals based
-							on how
-							inclusively or exclusively the bobas and tikas are connecting with each other.
-						</p>
-						<p class="text-m">
-							The proportion of
-							<span style="font-weight:bold; color:#24E5EA;">
-								Bobas (minority group)
-							</span>
-							and
-							<span style="font-weight:bold; color:#FF7300;">
-								Tikas (majority)
-							</span>who the emcee robot is highlighting is
-							not always equal to their demographics in the group. The proportion of the 10 individuals
-							that the
-							emcee highlights can either underrepresent, overrepresent, or equally (fairly) represent the
-							ratio
-							of bobas and tikas in the bar. The proportion of bobas the emcee (algorithm) highlights is
-							not only
-							based on the ratio of bobas to tikas, but also on how well the bobas and tikas connect to
-							their own
-							group and to others.
-						</p>
+
+			<!-- === IMPROVED SECTION START === -->
+			<div class="pt-2 space-y-4 text-gray-300 leading-relaxed">
+				<h2 class="text-xl font-bold text-gray-100">
+					Some bobas walk into a club…
+				</h2>
+				<p class="text-sm">
+					They want to join the tikas, who make up the majority of partiers
+					on the dance floor. Throughout the night, an emcee robot—using a
+					ranking algorithm—is always highlighting ten individuals based on
+					how inclusively or exclusively the bobas and tikas are connecting
+					with each other.
+				</p>
+				<p class="text-sm">
+					The proportion of
+					<span class="font-bold text-[#24E5EA]">
+						Bobas (minority group)
 					</span>
+					and
+					<span class="font-bold text-[#FF7300]">
+						Tikas (majority)
+					</span>
+					who the emcee robot is highlighting is not always equal to their
+					demographics in the group.
+				</p>
+				<p class="text-sm">
+					The proportion of the 10 individuals
+					that the emcee highlights can either underrepresent,
+					overrepresent, or equally (fairly) represent the ratio of bobas
+					and tikas in the bar. The proportion of bobas the emcee
+					(algorithm) highlights is not only based on the ratio of bobas to
+					tikas, but also on how well the bobas and tikas connect to their
+					own group and to others.
 				</p>
 			</div>
+			<!-- === IMPROVED SECTION END === -->
 		</aside>
 
 		<!-- Middle Panel (2/4) - Graph -->
@@ -121,14 +123,16 @@
 		<aside id="right-panel"
 			class="col-span-1 bg-transparent border-l border-gray-700 p-6 overflow-y-auto flex flex-col space-y-8">
 			<!-- Parameter Selection Section -->
-			Explore the three parameters that influence fairness in who the emcee represents
+			Explore the three parameters that influence fairness in who the emcee
+			represents
 			<br />
 			<div id="parameter-selection" class="flex flex-col items-start w-full">
 				<div class="w-full space-y-6">
 					<div class="slider-group flex flex-col items-start w-full">
 						<label for="sliderRatio" class="text-sm mb-1 text-left w-full">CROWD MIX</label>
 						<span class="text-xs text-gray-400 mb-2 text-left w-full">
-							the ratio of minority (bobas) to majority (tikas) individuals
+							the ratio of minority (bobas) to majority (tikas)
+							individuals
 						</span>
 						<div class="w-full flex justify-center">
 							<input type="range" id="sliderRatio" min="0" max="1" step="1" value="0"
@@ -140,7 +144,8 @@
 					<div class="slider-group flex flex-col items-start w-full">
 						<label for="sliderHomophilyMajority" class="text-sm mb-1 text-left w-full">TIKA LOVE</label>
 						<span class="text-xs text-gray-400 mb-2 text-left w-full">
-							how inclusive or exclusive the majority (tikas) build their social connections
+							how inclusive or exclusive the majority (tikas) build their
+							social connections
 						</span>
 						<div class="w-full flex justify-center">
 							<input type="range" id="sliderHomophilyMajority" min="0" max="2" step="1" value="1"
@@ -152,7 +157,8 @@
 					<div class="slider-group flex flex-col items-start w-full">
 						<label for="sliderHomophilyMinority" class="text-sm mb-1 text-left w-full">BOBA LOVE</label>
 						<span class="text-xs text-gray-400 mb-2 text-left w-full">
-							how inclusive or exclusive the minority (bobas) build their social connections
+							how inclusive or exclusive the minority (bobas) build their
+							social connections
 						</span>
 						<div class="w-full flex justify-center">
 							<input type="range" id="sliderHomophilyMinority" min="0" max="2" step="1" value="1"
@@ -164,7 +170,7 @@
 				</div>
 				<button onclick="updateNetwork()"
 					class="mt-6 w-full py-2 px-4 text-sm text-black rounded-md cursor-pointer transition-colors"
-					style="background-color: #ffb500;" onmouseover="this.style.backgroundColor='#e6a200';"
+					style="background-color: #ffb500" onmouseover="this.style.backgroundColor='#e6a200';"
 					onmouseout="this.style.backgroundColor='#ffb500';">
 					Update Rave Network
 				</button>
@@ -172,7 +178,7 @@
 
 			<!-- Top 10 Nodes Section -->
 			<div id="top10-nodes">
-				<h2 class="text-lg font-semibold mb-3 text-center" style="color: #ffb500;">
+				<h2 class="text-lg font-semibold mb-3 text-center" style="color: #ffb500">
 					Emcee faves
 				</h2>
 				<ul id="top10-list" class="pl-5 list-decimal space-y-1.5">
@@ -183,11 +189,10 @@
 
 			<button onclick="loadGraph()"
 				class="mt-2 w-full py-2 px-4 text-sm text-black rounded-md cursor-pointer transition-colors"
-				style="background-color: #ffb500;" onmouseover="this.style.backgroundColor='#e6a200';"
+				style="background-color: #ffb500" onmouseover="this.style.backgroundColor='#e6a200';"
 				onmouseout="this.style.backgroundColor='#ffb500';">
-				Load Graph
+				Show related inequity metrics
 			</button>
-
 		</aside>
 	</div>
 	<script src="network.js"></script>
