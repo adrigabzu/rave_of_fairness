@@ -257,6 +257,98 @@ function playMusic() {
   window.currentAudio = audio;
 }
 
+
+// -------------------------
+// Opens a popup displaying a PNG image along with a text.
+// -------------------------
+/**
+ * Opens a popup displaying a PNG image along with a text.
+ * Blurs the rest of the website while the popup is visible.
+ */
+function loadGraph() {
+  // Get current slider values
+  const fm = document.getElementById("sliderRatioValue").textContent;
+  const hMM = document.getElementById("sliderHomophilyMajorityValue").textContent;
+  const hmm = document.getElementById("sliderHomophilyMinorityValue").textContent;
+
+  // Build image filename dynamically
+  const imgSrc = `../../plots_generated/Heatmap_fm${fm}_hMM${hMM}_hmm${hmm}.png`;
+
+  // Create overlay
+  const overlay = document.createElement("div");
+  overlay.style.position = "fixed";
+  overlay.style.top = "0";
+  overlay.style.left = "0";
+  overlay.style.width = "100%";
+  overlay.style.height = "100%";
+  overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  overlay.style.backdropFilter = "blur(5px)";
+  overlay.style.zIndex = "999";
+  document.body.appendChild(overlay);
+
+  // Create popup container
+  const popup = document.createElement("div");
+  popup.style.position = "fixed";
+  popup.style.top = "50%";
+  popup.style.left = "50%";
+  popup.style.transform = "translate(-50%, -50%)";
+  popup.style.zIndex = "1000";
+  popup.style.backgroundColor = "white";
+  popup.style.padding = "20px";
+  popup.style.borderRadius = "8px";
+  popup.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+  popup.style.textAlign = "center";
+  popup.style.width = "350px";
+  popup.style.maxWidth = "90%";
+
+  // Add Title
+  const title = document.createElement("h3");
+  title.textContent = "Inequity Plot";
+  title.style.fontFamily = "Syncopate, sans-serif";
+  title.style.fontSize = "18px";
+  title.style.fontWeight = "700";
+  title.style.color = "#24E5EA";
+  title.style.marginBottom = "8px";
+  popup.appendChild(title);
+
+  // Add Text
+  const text = document.createElement("p");
+  text.textContent = "Homophily is from 0 to 1. X axis is the minority, Y axis is the majority.";
+  text.style.fontSize = "14px";
+  text.style.color = "#333";
+  text.style.marginBottom = "12px";
+  popup.appendChild(text);
+
+  // Add Image
+  const img = document.createElement("img");
+  img.src = imgSrc;
+  img.alt = "Heatmap Image";
+  img.style.width = "100%";
+  img.style.borderRadius = "6px";
+  popup.appendChild(img);
+
+  // Add Close Button
+  const closeButton = document.createElement("button");
+  closeButton.textContent = "Close";
+  closeButton.style.marginTop = "12px";
+  closeButton.style.padding = "6px 12px";
+  closeButton.style.backgroundColor = "#ffb500";
+  closeButton.style.color = "white";
+  closeButton.style.border = "none";
+  closeButton.style.borderRadius = "4px";
+  closeButton.style.cursor = "pointer";
+  closeButton.onmouseover = () => (closeButton.style.backgroundColor = "#e6a200");
+  closeButton.onmouseout = () => (closeButton.style.backgroundColor = "#ffb500");
+  closeButton.onclick = () => {
+    document.body.removeChild(popup);
+    document.body.removeChild(overlay);
+  };
+  popup.appendChild(closeButton);
+
+  // Append popup to body
+  document.body.appendChild(popup);
+}
+
 // -------------------------
 // Update top 10 ranked nodes list
 // -------------------------
@@ -320,7 +412,7 @@ async function updateNetwork() {
 
   // 🔊 Play the corresponding audio
   playMusic();
-}
+
 
 // --- Initial load ---
 // updateNetwork(); // You can uncomment this to load a default network on page load
@@ -333,3 +425,4 @@ document
 		event.preventDefault(); // <-- prevent page reload
 		updateNetwork();
 	});
+}
