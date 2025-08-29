@@ -10,7 +10,8 @@ data = pd.read_csv("../data/raw_data/ranking_minorities.csv")
 
 # %%
 
-# Filter rows where k equals 10 and other    specified conditions
+# Filter rows where k equals 10
+
 filtered = data[
     (data["k"] == 10)
     & (data["h_mm"].isin([0.2, 0.5, 0.8]))
@@ -66,6 +67,7 @@ plot_histogram(filtered_data, bins=bin_edges)
 
 filtered_data["me_node_bin"] = pd.cut(
     filtered_data["me_node"], bins=bin_edges, include_lowest=True
+
 )
 
 # %%
@@ -97,4 +99,6 @@ print(filtered_data[["me_node", "me_node_bin", "me_node_bin_value"]].head(10))
 filtered_data.to_csv("../data/processed_data/parameters.csv", index=False)
 
 # Save the filtered data to JSON
-filtered_data.to_json("../data/processed_data/parameters.json", orient="records")
+filtered_data.to_json(
+    "../data/processed_data/parameters.json", orient="records", lines=True
+)

@@ -3,11 +3,6 @@ import argparse
 import json
 import os
 
-# --- Fixed paths ---
-PARAMS_FILE = "data/processed_data/parameters.csv"
-NODES_FILE = "data/raw_data/nodes_pg.csv"
-EDGES_FILE = "data/raw_data/edges.csv"
-
 
 def convert_to_graph_first_draft(nodes_file, edges_file, network_id):
     nodes = []
@@ -30,13 +25,6 @@ def convert_to_graph_first_draft(nodes_file, edges_file, network_id):
                 )
 
     return {"nodes": nodes, "links": links}
-
-
-def try_float(val):
-    try:
-        return float(val)
-    except ValueError:
-        return val
 
 
 def convert_to_graph(nodes_file, edges_file, network_id):
@@ -68,70 +56,77 @@ def convert_to_graph(nodes_file, edges_file, network_id):
                     {"source": int(row["source"]), "target": int(row["target"])}
                 )
 
-    return {"nodes": nodes, "links": links}
+    # Read network-level attributes from ranking_minorities.csv
+    network_attributes = None
+    ranking_file = nodes_file.replace("nodes_pg.csv", "ranking_minorities.csv")
+    try:
+        with open(ranking_file, newline="") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                if str(row["id"]) == str(network_id):
+                    network_attributes = {
+                        key: float(row[key]) if key not in ["id", "k"] else row[key]
+                        for key in row
+                    }
+                    break
+    except Exception:
+        network_attributes = None
+
+    result = {"nodes": nodes, "links": links}
+    if network_attributes:
+        result["network_attributes"] = network_attributes
+    return result
 
 
-def batch_generate_graphs(nodes_file, edges_file, params_file, output_dir):
+def batch_generate_graphs(nodes_file, edges_file, output_dir, start_id=0, end_id=0):
     os.makedirs(output_dir, exist_ok=True)
-
-    with open(params_file, newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            network_id = row["id"]
-            graph = convert_to_graph(nodes_file, edges_file, network_id)
-
-            # Build filename from parameters (scaled ×10)
-            fm = int(float(row["fm"]) * 10)
-            h_MM = int(float(row["h_MM"]) * 10)
-            h_mm = int(float(row["h_mm"]) * 10)
-            filename = f"graph_{fm}_{h_MM}_{h_mm}.json"
-
-            output_path = os.path.join(output_dir, filename)
-            with open(output_path, "w") as out:
-                json.dump(graph, out, indent=2)
-
-    print(f"✅ Generated graphs in {output_dir}")
+    for network_id in range(start_id, end_id + 1):
+        graph = convert_to_graph(nodes_file, edges_file, network_id)
+        output_path = os.path.join(output_dir, f"graph_{network_id}.json")
+        with open(output_path, "w") as f:
+            json.dump(graph, f, indent=2)
+    print(f"Generated graphs for IDs {start_id} to {end_id} in {output_dir}")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Convert networks into JSON graphs.")
-    parser.add_argument("--batch", action="store_true", help="Generate all networks")
-    parser.add_argument("--id", help="Single network id (optional)")
-    parser.add_argument(
-        "--output_dir",
-        default="data/network_generated",
-        help="Where to save generated JSON files",
+    parser = argparse.ArgumentParser(
+        description="Convert nodes and edges CSVs to D3 graph JSON."
     )
+    parser.add_argument("--nodes", required=True, help="Path to nodes CSV file")
+    parser.add_argument("--edges", required=True, help="Path to edges CSV file")
+    parser.add_argument("--id", help="Network id to filter")
+    parser.add_argument("--output", help="Output JSON file (optional)")
+    parser.add_argument(
+        "--batch",
+        action="store_true",
+        help="Batch mode: generate for a range of IDs",
+    )
+    parser.add_argument(
+        "--start_id",
+        type=int,
+        help="Start network id (for batch mode)",
+    )
+    parser.add_argument("--end_id", type=int, help="End network id (for batch mode)")
+    parser.add_argument("--output_dir", help="Output directory for batch mode")
     args = parser.parse_args()
 
     if args.batch:
-        batch_generate_graphs(NODES_FILE, EDGES_FILE, PARAMS_FILE, args.output_dir)
+        if args.start_id is None or args.end_id is None or args.output_dir is None:
+            print("Batch mode requires --start_id, --end_id, and --output_dir")
+        else:
+            batch_generate_graphs(
+                args.nodes, args.edges, args.output_dir, args.start_id, args.end_id
+            )
     else:
         if args.id is None:
-            print("Please provide --id for single mode or use --batch.")
-            return
-
-        graph = convert_to_graph(NODES_FILE, EDGES_FILE, args.id)
-
-        # Lookup params for filename
-        with open(PARAMS_FILE, newline="") as f:
-            reader = csv.DictReader(f)
-            row = next((r for r in reader if r["id"] == str(args.id)), None)
-
-        if row:
-            fm = int(float(row["fm"]) * 10)
-            h_MM = int(float(row["h_MM"]) * 10)
-            h_mm = int(float(row["h_mm"]) * 10)
-            filename = f"graph_{fm}_{h_MM}_{h_mm}.json"
+            print("Please provide --id for single network mode.")
         else:
-            filename = f"graph_{args.id}.json"
-
-        output_path = os.path.join(args.output_dir, filename)
-        os.makedirs(args.output_dir, exist_ok=True)
-        with open(output_path, "w") as out:
-            json.dump(graph, out, indent=2)
-
-        print(f"✅ Saved single graph to {output_path}")
+            graph = convert_to_graph(args.nodes, args.edges, args.id)
+            if args.output:
+                with open(args.output, "w") as f:
+                    json.dump(graph, f, indent=2)
+            else:
+                print(json.dumps(graph, indent=2))
 
 
 if __name__ == "__main__":

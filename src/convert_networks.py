@@ -60,7 +60,9 @@ else:
         # 4a. Filter data for the current network ID
         current_nodes = nodes_df[nodes_df["id"] == network_id].copy()
         current_edges = edges_df[edges_df["id"] == network_id]
-        current_attributes_row = attributes_df[attributes_df["id"] == network_id]
+        current_attributes_row = attributes_df[
+            attributes_df["id"] == network_id
+        ]
 
         # 4b. Prepare the 'nodes' list for the D3 network object
         current_nodes.rename(columns={"node": "id"}, inplace=True)
@@ -73,38 +75,35 @@ else:
         # 4d. Assemble the D3-compatible network object
         d3_network_data = {"nodes": nodes_list, "links": links_list}
 
-        print("d3_network_data", d3_network_data)
-        break
+        # 4e. Prepare the 'attributes' object
+        if not current_attributes_row.empty:
+            attributes_dict = current_attributes_row.to_dict("records")[0]
+            # Ensure the 'id' within the attributes is a string, as in the original
+            attributes_dict["id"] = str(attributes_dict["id"])
+        else:
+            print(f"Warning: No attributes found for network {network_id}.")
+            attributes_dict = {}
 
-        # # 4e. Prepare the 'attributes' object
-        # if not current_attributes_row.empty:
-        #     attributes_dict = current_attributes_row.to_dict("records")[0]
-        #     # Ensure the 'id' within the attributes is a string, as in the original
-        #     attributes_dict["id"] = str(attributes_dict["id"])
-        # else:
-        #     print(f"Warning: No attributes found for network {network_id}.")
-        #     attributes_dict = {}
+        # 4f. Assemble the final object for this network
+        final_network_object = {
+            "id": int(network_id),  # The top-level ID for this network
+            "attributes": attributes_dict,
+            "network": d3_network_data,
+        }
 
-        # # 4f. Assemble the final object for this network
-        # final_network_object = {
-        #     "id": int(network_id),  # The top-level ID for this network
-        #     "attributes": attributes_dict,
-        #     "network": d3_network_data,
-        # }
+        # 4g. Append this complete network object to our main list
+        all_networks_list.append(final_network_object)
+        print(f"Network {network_id} has been processed and added to the list.")
 
-        # # 4g. Append this complete network object to our main list
-        # all_networks_list.append(final_network_object)
-        # print(f"Network {network_id} has been processed and added to the list.")
+print("\n--- All networks have been processed. ---")
 
-# print("\n--- All networks have been processed. ---")
+# %%
+# STEP 5: Write the complete list of networks to a single JSON file
 
-# # %%
-# # STEP 5: Write the complete list of networks to a single JSON file
+print(f"\nStep 5: Writing all {len(all_networks_list)} networks to a single file...")
 
-# print(f"\nStep 5: Writing all {len(all_networks_list)} networks to a single file...")
+with open(OUTPUT_FILE, "w") as f:
+    # Use indent=2 for a nicely formatted, human-readable JSON file
+    json.dump(all_networks_list, f, indent=2)
 
-# with open(OUTPUT_FILE, "w") as f:
-#     # Use indent=2 for a nicely formatted, human-readable JSON file
-#     json.dump(all_networks_list, f, indent=2)
-
-# print(f"Successfully created the consolidated file: {OUTPUT_FILE}")
+print(f"Successfully created the consolidated file: {OUTPUT_FILE}")
