@@ -410,19 +410,7 @@ async function updateNetwork() {
   updateTop10List(graph.nodes);
   drawNetwork(graph);
 
+
   // 🔊 Play the corresponding audio
   playMusic();
-
-
-// --- Initial load ---
-// updateNetwork(); // You can uncomment this to load a default network on page load
-
-// --- Connect button to update ---
-// This replaces the `onclick` attribute in the HTML for better practice
-document
-	.querySelector('button[onclick="updateNetwork()"]')
-	.addEventListener("click", (event) => {
-		event.preventDefault(); // <-- prevent page reload
-		updateNetwork();
-	});
 }
