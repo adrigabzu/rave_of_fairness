@@ -240,10 +240,10 @@ function playMusic() {
   const sliderRatio = Math.round(parseFloat(document.getElementById("sliderRatioValue").textContent) * 10);
   const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
   const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
-  const version = document.getElementById("sliderSoundVersionValue").textContent; // version_a or version_b
 
-  version = "version_a"
-  const audioFile = `../../data/music_generated/${version}/sound_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.mp3`;
+
+  const audioFile = `../../data/music_generated/version_a/Sound_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.mp3`;
+//   const audioFile = `../../data/music_generated/version_b/sample-9s.mp3`;
 
   console.log("Playing audio:", audioFile);
 
@@ -267,12 +267,13 @@ function playMusic() {
  */
 function loadGraph() {
   // Get current slider values
-  const fm = document.getElementById("sliderRatioValue").textContent;
-  const hMM = document.getElementById("sliderHomophilyMajorityValue").textContent;
-  const hmm = document.getElementById("sliderHomophilyMinorityValue").textContent;
+  // --- Grab slider values ---
+  const sliderRatio = Math.round(parseFloat(document.getElementById("sliderRatioValue").textContent) * 10);
+  const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
+  const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
 
-  // Build image filename dynamically
-  const imgSrc = `../../plots_generated/Heatmap_fm${fm}_hMM${hMM}_hmm${hmm}.png`;
+  const imgSrc = `../../data/plots_generated/Heatmap_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.png`;
+  console.log("Loading graph generated:", imgSrc);
 
   // Create overlay
   const overlay = document.createElement("div");
@@ -409,7 +410,6 @@ async function updateNetwork() {
   if (!graph) return;
   updateTop10List(graph.nodes);
   drawNetwork(graph);
-
 
   // 🔊 Play the corresponding audio
   playMusic();
