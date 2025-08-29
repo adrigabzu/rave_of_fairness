@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Define the allowed values for each slider
 	const ratioValues = [0.1, 0.3];
 	const homophilyValues = [0.2, 0.5, 0.8];
+  	const soundVersions = ["version_a", "version_b"];
 
 	// Helper function to set up a slider with discrete steps
 	const setupSlider = (sliderId, displayId, valueMap) => {
@@ -27,18 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		updateDisplay();
 	};
 
-	// Set up all three sliders
+	// --- Setup all sliders ---
 	setupSlider("sliderRatio", "sliderRatioValue", ratioValues);
-	setupSlider(
-		"sliderHomophilyMajority",
-		"sliderHomophilyMajorityValue",
-		homophilyValues
-	);
-	setupSlider(
-		"sliderHomophilyMinority",
-		"sliderHomophilyMinorityValue",
-		homophilyValues
-	);
+	setupSlider("sliderHomophilyMajority", "sliderHomophilyMajorityValue", homophilyValues);
+	setupSlider("sliderHomophilyMinority", "sliderHomophilyMinorityValue", homophilyValues);
+	setupSlider("sliderSoundVersion", "sliderSoundVersionValue", soundVersions);
+
 });
 
 // -------------------------
@@ -51,25 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 async function loadNetwork() {
 	// --- Grab slider values ---
-	const sliderRatio = Math.round(
-		parseFloat(document.getElementById("sliderRatioValue").textContent) * 10
-	);
-	const sliderH1 = Math.round(
-		parseFloat(
-			document.getElementById("sliderHomophilyMajorityValue").textContent
-		) * 10
-	);
-	const sliderH2 = Math.round(
-		parseFloat(
-			document.getElementById("sliderHomophilyMinorityValue").textContent
-		) * 10
-	);
+	const sliderRatio = Math.round(parseFloat(document.getElementById("sliderRatioValue").textContent) * 10);
+	const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
+	const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
 
-	console.log("Slider values:", sliderRatio, sliderH1, sliderH2);
-
-	const fileName = `../../data/network_generated/graph_${sliderRatio}_${sliderH1}_${sliderH2}.json`;
-
-	console.log("Loading:", fileName);
+	const fileName = `../../data/network_generated/graph_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.json`;
+	console.log("Loading network:", fileName);
 
 	try {
 		const graph = await d3.json(fileName);
@@ -167,7 +149,7 @@ function drawNetwork(graph) {
 	nodeContent
 		.append("image")
 		.attr("xlink:href", (d) =>
-			d.minority === 1 ? "../../images/boba_v2.svg" : "../../images/tika_v2.svg"
+			d.minority === 1 ? "../../images/boba.png" : "../../images/tika.png"
 		)
 		.attr("width", 50)
 		.attr("height", 50)
@@ -252,6 +234,124 @@ function drawNetwork(graph) {
 }
 
 // -------------------------
+// Play audio based on slider values
+// -------------------------
+function playMusic() {
+  const sliderRatio = Math.round(parseFloat(document.getElementById("sliderRatioValue").textContent) * 10);
+  const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
+  const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
+
+
+  const audioFile = `../../data/music_generated/version_a/Sound_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.mp3`;
+//   const audioFile = `../../data/music_generated/version_b/sample-9s.mp3`;
+
+  console.log("Playing audio:", audioFile);
+
+  if (window.currentAudio) {
+    window.currentAudio.pause();
+    window.currentAudio.currentTime = 0;
+  }
+
+  const audio = new Audio(audioFile);
+  audio.play().catch(err => console.error("Audio playback failed:", err));
+  window.currentAudio = audio;
+}
+
+
+// -------------------------
+// Opens a popup displaying a PNG image along with a text.
+// -------------------------
+/**
+ * Opens a popup displaying a PNG image along with a text.
+ * Blurs the rest of the website while the popup is visible.
+ */
+function loadGraph() {
+  // Get current slider values
+  // --- Grab slider values ---
+  const sliderRatio = Math.round(parseFloat(document.getElementById("sliderRatioValue").textContent) * 10);
+  const sliderH1 = Math.round(parseFloat(document.getElementById("sliderHomophilyMajorityValue").textContent) * 10);
+  const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
+
+  const imgSrc = `../../data/plots_generated/Heatmap_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.png`;
+  console.log("Loading graph generated:", imgSrc);
+
+
+  // Create overlay
+  const overlay = document.createElement("div");
+  overlay.style.position = "fixed";
+  overlay.style.top = "0";
+  overlay.style.left = "0";
+  overlay.style.width = "100%";
+  overlay.style.height = "100%";
+  overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  overlay.style.backdropFilter = "blur(5px)";
+  overlay.style.zIndex = "999";
+  document.body.appendChild(overlay);
+
+  // Create popup container
+  const popup = document.createElement("div");
+  popup.style.position = "fixed";
+  popup.style.top = "50%";
+  popup.style.left = "50%";
+  popup.style.transform = "translate(-50%, -50%)";
+  popup.style.zIndex = "1000";
+  popup.style.backgroundColor = "white";
+  popup.style.padding = "20px";
+  popup.style.borderRadius = "8px";
+  popup.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+  popup.style.textAlign = "center";
+  popup.style.width = "350px";
+  popup.style.maxWidth = "90%";
+
+  // Add Title
+  const title = document.createElement("h3");
+  title.textContent = "Inequity Plot";
+  title.style.fontFamily = "Syncopate, sans-serif";
+  title.style.fontSize = "18px";
+  title.style.fontWeight = "700";
+  title.style.color = "#24E5EA";
+  title.style.marginBottom = "8px";
+  popup.appendChild(title);
+
+  // Add Text
+  const text = document.createElement("p");
+  text.textContent = "Homophily is from 0 to 1. X axis is the minority, Y axis is the majority.";
+  text.style.fontSize = "14px";
+  text.style.color = "#333";
+  text.style.marginBottom = "12px";
+  popup.appendChild(text);
+
+  // Add Image
+  const img = document.createElement("img");
+  img.src = imgSrc;
+  img.alt = "Heatmap Image";
+  img.style.width = "100%";
+  img.style.borderRadius = "6px";
+  popup.appendChild(img);
+
+  // Add Close Button
+  const closeButton = document.createElement("button");
+  closeButton.textContent = "Close";
+  closeButton.style.marginTop = "12px";
+  closeButton.style.padding = "6px 12px";
+  closeButton.style.backgroundColor = "#ffb500";
+  closeButton.style.color = "white";
+  closeButton.style.border = "none";
+  closeButton.style.borderRadius = "4px";
+  closeButton.style.cursor = "pointer";
+  closeButton.onmouseover = () => (closeButton.style.backgroundColor = "#e6a200");
+  closeButton.onmouseout = () => (closeButton.style.backgroundColor = "#ffb500");
+  closeButton.onclick = () => {
+    document.body.removeChild(popup);
+    document.body.removeChild(overlay);
+  };
+  popup.appendChild(closeButton);
+
+  // Append popup to body
+  document.body.appendChild(popup);
+}
+
+// -------------------------
 // Update top 10 ranked nodes list
 // -------------------------
 function updateTop10List(nodes) {
@@ -263,43 +363,55 @@ function updateTop10List(nodes) {
 		.sort((a, b) => a.order_node - b.order_node)
 		.slice(0, 10);
 
-	top10.forEach((d) => {
-		const li = document.createElement("li");
-		li.className = "text-sm flex items-center gap-2";
+	// Split into minority and majority
+	const minorityNodes = top10.filter((d) => d.minority === 1);
+	const majorityNodes = top10.filter((d) => d.minority !== 1);
 
+	// Create rows (horizontal lines)
+	const rowMinority = document.createElement("div");
+	rowMinority.style.display = "flex";
+	rowMinority.style.flexDirection = "row";
+	rowMinority.style.gap = "6px";
+	rowMinority.style.marginBottom = "8px";
+
+	const rowMajority = document.createElement("div");
+	rowMajority.style.display = "flex";
+	rowMajority.style.flexDirection = "row";
+	rowMajority.style.gap = "6px";
+
+	// Add icons to minority row
+	minorityNodes.forEach((d) => {
 		const img = document.createElement("img");
-		img.src =
-			d.minority === 1 ? "../../images/boba.svg" : "../../images/tika.svg";
+		img.src = "../../images/boba.png";
 		img.width = 20;
 		img.height = 20;
-
-		const text = document.createTextNode(
-			`Node ${d.id} (Score: ${d.order_node})`
-		);
-		li.appendChild(img);
-		li.appendChild(text);
-		listEl.appendChild(li);
+		img.title = `Node ${d.id}`;
+		rowMinority.appendChild(img);
 	});
+
+	// Add icons to majority row
+	majorityNodes.forEach((d) => {
+		const img = document.createElement("img");
+		img.src = "../../images/tika.png";
+		img.width = 20;
+		img.height = 20;
+		img.title = `Node ${d.id}`;
+		rowMajority.appendChild(img);
+	});
+
+	listEl.appendChild(rowMinority);
+	listEl.appendChild(rowMajority);
 }
 
 // -------------------------
 // Main update function: load & draw network
 // -------------------------
 async function updateNetwork() {
-	const graph = await loadNetwork();
-	if (!graph) return;
-	updateTop10List(graph.nodes);
-	drawNetwork(graph);
+  const graph = await loadNetwork();
+  if (!graph) return;
+  updateTop10List(graph.nodes);
+  drawNetwork(graph);
+
+  // 🔊 Play the corresponding audio
+  playMusic();
 }
-
-// --- Initial load ---
-// updateNetwork(); // You can uncomment this to load a default network on page load
-
-// --- Connect button to update ---
-// This replaces the `onclick` attribute in the HTML for better practice
-document
-	.querySelector('button[onclick="updateNetwork()"]')
-	.addEventListener("click", (event) => {
-		event.preventDefault(); // <-- prevent page reload
-		updateNetwork();
-	});
