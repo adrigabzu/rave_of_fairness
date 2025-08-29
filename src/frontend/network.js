@@ -149,7 +149,7 @@ function drawNetwork(graph) {
 	nodeContent
 		.append("image")
 		.attr("xlink:href", (d) =>
-			d.minority === 1 ? "../../images/boba_v2.svg" : "../../images/tika_v2.svg"
+			d.minority === 1 ? "../../images/boba.png" : "../../images/tika.png"
 		)
 		.attr("width", 50)
 		.attr("height", 50)
@@ -268,23 +268,44 @@ function updateTop10List(nodes) {
 		.sort((a, b) => a.order_node - b.order_node)
 		.slice(0, 10);
 
-	top10.forEach((d) => {
-		const li = document.createElement("li");
-		li.className = "text-sm flex items-center gap-2";
+	// Split into minority and majority
+	const minorityNodes = top10.filter((d) => d.minority === 1);
+	const majorityNodes = top10.filter((d) => d.minority !== 1);
 
+	// Create rows (horizontal lines)
+	const rowMinority = document.createElement("div");
+	rowMinority.style.display = "flex";
+	rowMinority.style.flexDirection = "row";
+	rowMinority.style.gap = "6px";
+	rowMinority.style.marginBottom = "8px";
+
+	const rowMajority = document.createElement("div");
+	rowMajority.style.display = "flex";
+	rowMajority.style.flexDirection = "row";
+	rowMajority.style.gap = "6px";
+
+	// Add icons to minority row
+	minorityNodes.forEach((d) => {
 		const img = document.createElement("img");
-		img.src =
-			d.minority === 1 ? "../../images/boba.svg" : "../../images/tika.svg";
+		img.src = "../../images/boba.png";
 		img.width = 20;
 		img.height = 20;
-
-		const text = document.createTextNode(
-			`Node ${d.id} (Score: ${d.order_node})`
-		);
-		li.appendChild(img);
-		li.appendChild(text);
-		listEl.appendChild(li);
+		img.title = `Node ${d.id}`;
+		rowMinority.appendChild(img);
 	});
+
+	// Add icons to majority row
+	majorityNodes.forEach((d) => {
+		const img = document.createElement("img");
+		img.src = "../../images/tika.png";
+		img.width = 20;
+		img.height = 20;
+		img.title = `Node ${d.id}`;
+		rowMajority.appendChild(img);
+	});
+
+	listEl.appendChild(rowMinority);
+	listEl.appendChild(rowMajority);
 }
 
 // -------------------------
