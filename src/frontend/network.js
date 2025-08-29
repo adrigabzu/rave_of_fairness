@@ -242,6 +242,7 @@ function playMusic() {
   const sliderH2 = Math.round(parseFloat(document.getElementById("sliderHomophilyMinorityValue").textContent) * 10);
   const version = document.getElementById("sliderSoundVersionValue").textContent; // version_a or version_b
 
+  version = "version_a"
   const audioFile = `../../data/music_generated/${version}/sound_fm${sliderRatio}_hMM${sliderH1}_hmm${sliderH2}.mp3`;
 
   console.log("Playing audio:", audioFile);

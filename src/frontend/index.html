@@ -160,16 +160,6 @@
 						<span id="sliderHomophilyMinorityValue"
 							class="text-sm text-blue-400 font-semibold mt-1 w-full text-center">0.5</span>
 					</div>
-					<div class="slider-group flex flex-col items-center">
-						<label for="sliderSoundVersion" class="text-sm mb-1">Sound Version</label>
-						<input type="range" id="sliderSoundVersion" min="0" max="1" step="1" value="0" class="w-48 h-1.5 bg-gray-600 rounded-full appearance-none cursor-pointer
-					    [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4
-					    [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-green-500
-					    [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full
-					    [&::-moz-range-thumb]:bg-green-500" />
-						<span id="sliderSoundVersionValue"
-							class="text-sm text-green-400 font-semibold mt-1">version_a</span>
-					</div>
 				</div>
 
 				<button onclick="updateNetwork()"
@@ -190,6 +180,69 @@
 			</div>
 		</aside>
 	</div>
+
+	<!-- Additional Panel Below Main 3-Column Layout -->
+	<section class="w-full bg-gray-800 text-white p-8 mt-6">
+		<!-- Panel Title -->
+		<h2 class="text-3xl font-title font-bold text-blue-400 mb-4 text-center">
+			Additional Insights
+		</h2>
+
+		<!-- Panel Description -->
+		<p class="text-white text-center mb-8 max-w-3xl mx-auto">
+			Here we explore a set of heatmaps representing network interactions under different crowd mixes and
+			homophily
+			conditions. Each heatmap visualizes how minority and majority groups connect in the social network.
+		</p>
+
+		<!-- Grid: 3 columns × 2 rows -->
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+			<!-- Repeat this div 6 times for 2 rows × 3 columns -->
+			<div class="flex flex-col items-center bg-gray-700 rounded-lg p-4">
+				<div id="heatmap1" class="w-full h-48 bg-white rounded-lg mb-2">
+					<!-- Your Heatmap SVG/Canvas will go here -->
+					<svg class="w-full h-full"></svg>
+				</div>
+				<p class="text-center text-sm text-gray-200">Heatmap fm1_hMM2_hmm2</p>
+			</div>
+
+			<div class="flex flex-col items-center bg-gray-700 rounded-lg p-4">
+				<div id="heatmap2" class="w-full h-48 bg-white rounded-lg mb-2">
+					<svg class="w-full h-full"></svg>
+				</div>
+				<p class="text-center text-sm text-gray-200">Heatmap fm1_hMM2_hmm2</p>
+			</div>
+
+			<div class="flex flex-col items-center bg-gray-700 rounded-lg p-4">
+				<div id="heatmap3" class="w-full h-48 bg-white rounded-lg mb-2">
+					<svg class="w-full h-full"></svg>
+				</div>
+				<p class="text-center text-sm text-gray-200">Heatmap fm1_hMM2_hmm2</p>
+			</div>
+
+			<div class="flex flex-col items-center bg-gray-700 rounded-lg p-4">
+				<div id="heatmap4" class="w-full h-48 bg-white rounded-lg mb-2">
+					<svg class="w-full h-full"></svg>
+				</div>
+				<p class="text-center text-sm text-gray-200">Heatmap fm1_hMM2_hmm2</p>
+			</div>
+
+			<div class="flex flex-col items-center bg-gray-700 rounded-lg p-4">
+				<div id="heatmap5" class="w-full h-48 bg-white rounded-lg mb-2">
+					<svg class="w-full h-full"></svg>
+				</div>
+				<p class="text-center text-sm text-gray-200">Heatmap fm1_hMM2_hmm2</p>
+			</div>
+
+			<div class="flex flex-col items-center bg-gray-700 rounded-lg p-4">
+				<div id="heatmap6" class="w-full h-48 bg-white rounded-lg mb-2">
+					<svg class="w-full h-full"></svg>
+				</div>
+				<p class="text-center text-sm text-gray-200">Heatmap fm1_hMM2_hmm2</p>
+			</div>
+		</div>
+	</section>
+
 	<script src="network.js"></script>
 </body>
 
