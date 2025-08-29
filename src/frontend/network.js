@@ -167,7 +167,7 @@ function drawNetwork(graph) {
 	nodeContent
 		.append("image")
 		.attr("xlink:href", (d) =>
-			d.minority === 1 ? "../../images/boba.svg" : "../../images/tika.svg"
+			d.minority === 1 ? "../../images/boba_v2.svg" : "../../images/tika_v2.svg"
 		)
 		.attr("width", 50)
 		.attr("height", 50)
